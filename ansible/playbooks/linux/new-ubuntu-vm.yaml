@@ -1,0 +1,130 @@
+# Similar to the other new VM script, this one doesn't assume SSH connection.
+# Playbook Creates a new SSH user, Adds the public SSH key to the user, and adds them to sudoers without requiring a password
+# Installs and configures Zabix Agent with PSK Encryption, and installs QEMU Guest agent (remove that section if not on proxmox)
+# Installs any remaining updates then restarts.
+---
+- name: New Ubuntu VM
+  hosts: all
+  become: true
+  become_user: root
+  become_method: sudo
+
+# Change vars to match your environment
+  vars: 
+    NEW_USER: example
+    SSH_PUB: <changeme> #Public SSH key
+    zabbix_url: https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb
+    zabbix_install_path: /tmp/zabbix-release.deb
+    zabbix_conf: /etc/zabbix/zabbix_agentd.conf
+    SVRIP: 10.0.0.18 #Zabbix Server IP
+    TLSID: example
+    TLSPSK: abc123
+    PSK_PATH: /etc/zabbix/psk.psk
+    
+  tasks:
+    - name: Update Cached Packages
+      apt:
+        update_cache: yes
+
+#Add SSH Key user
+    - name: Create SSH user
+      tags: always
+      user:
+        name: '{{ NEW_USER }}'
+        groups: sudo
+        append: true
+        state: present
+        createhome: true
+
+    - name: add SSH key for new User
+      tags: always
+      authorized_key: 
+        user: '{{ NEW_USER }}'
+        key: "'{{ SSH_PUB }}' '{{ NEW_USER }}' default"
+
+    - name: add user to sudoers
+      tags: always
+      copy: 
+        dest: /etc/sudoers.d/80-'{{ NEW_USER }}'-sudo-user
+        content: "'{{ NEW_USER }}' ALL=(ALL) NOPASSWD:ALL"
+        mode: 0440
+
+#Install QEMU Guest Agent
+    - name: Install qemu-guest-agent
+      ansible.builtin.apt:
+        name: qemu-guest-agent
+        state: present
+
+    - name: Start qemu-guest-agent
+      ansible.builtin.service:
+        name: qemu-guest-agent
+        state: started
+
+#Install/Configure Zabbix
+    - name: Add zabbix repo
+      get_url: 
+        url: '{{ zabbix_url }}'
+        dest: '{{ zabbix_install_path }}'
+    
+    - name: Wait for file to download
+      wait_for:
+        path: '{{ zabbix_install_path }}'
+  
+    - name: Install Zabbix DPKG
+      apt:
+        deb: '{{ zabbix_install_path }}'
+
+    - name: Update Cache
+      apt:
+        update_cache: yes
+    
+    - name: Install Zabbix
+      apt:
+        name: zabbix-agent
+
+    - name: Wait for file to exist
+      wait_for:
+        path: '{{ zabbix_conf }}'
+
+    - name: Get Hostname
+      command: hostname
+      register: local_hostname
+
+    - name: Configure Zabbix
+      lineinfile:
+        path: '{{ zabbix_conf }}'
+        regexp: "{{ item.regexp }}"
+        insertafter: "{{ item.insertafter }}"
+        line: "{{ item.line }}"
+      with_items:
+        - {regexp: '^Server=.*', insertafter: '^# Server=', line: 'Server= {{ SVRIP }}' }
+        - {regexp: '^ServerActive=.*', insertafter: '^# ServerActive=', line: 'ServerActive= {{ SVRIP }}' }
+        - {regexp: '^Hostname=.*', insertafter: '^# Hostname=', line: 'Hostname={{ local_hostname.stdout }}' }
+        - {regexp: '^DenyKey=.*', insertafter: '^# DenyKey=', line: 'AllowKey=system.run[*]' }
+        - {regexp: '^ListenPort=.*', insertafter: '^# ListenPort=', line: 'ListenPort=10050' }
+        - {regexp: '^TLSConnect=.*', insertafter: '^# TLSConnect=', line: 'TLSConnect=psk' }
+        - {regexp: '^TLSAccept=.*', insertafter: '^# TLSAccept=', line: 'TLSAccept=psk' }
+        - {regexp: '^TLSPSKIdentity=.*', insertafter: '^# TLSPSKIdentity=', line: 'TLSPSKIdentity={{ TLSID }}' }
+        - {regexp: '^Timeout=.*', insertafter: '^# Timeout=', line: 'Timeout=30'  }
+        - {regexp: '^TLSPSKFile=.*', insertafter: '^# TLSPSKFile=', line: 'TLSPSKFile= {{ TLSPSKFile }}'  }
+        - {regexp: '^HostMetadata=.*', insertafter: '^# HostMetadata=', line: 'HostMetadata=Linux'  }
+        
+    - name: Create psk.psk 
+      copy:
+        dest: '{{ PSK_PATH }}'
+        content: '{{ TLSPSK }}'
+
+    - name: Restart Zabbix-Agent
+      service:
+        name: zabbix-agent
+        state: restarted
+        enabled: yes
+
+#Run final updates/upgrades and reboot
+    - name: Update Cached Packages
+      apt:
+        update_cache: yes
+        upgrade: dist 
+        
+    - name: Reboot Localhost
+      reboot:

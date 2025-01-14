@@ -1,0 +1,114 @@
+# Playbook runs against newly created VM with no desktop environment.
+# Runs best against newly created Cloud-Init clone. 
+# Installs Ubuntu Desktop and QEMU Guest Agent for Proxmox, Adds a new user for our Zabbix install path, 
+# Installs and Configures Zabbix Agent, and finishs with installing any remaining updates and a dist-upgrade
+# Assumes SSH public key already added
+---
+- name: Configure New Ubuntu VM
+  hosts: all
+  become: true
+
+## Change URL and Install paths as needed - Assumes Ubuntu 24.04
+  vars:
+    zabbix_url: https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb
+    zabbix_install_path: /tmp/zabbix-release.deb
+    zabbix_conf: /etc/zabbix/zabbix_agentd.conf
+    zabbix_package: zabbix-agent
+    PSK_PATH: /etc/zabbix/psk.psk #file path to create the PSK file for Zabbix
+    # Change the following for your environment. 
+    SVRIP: 10.0.0.18 #Zabbix server IP
+    TLSID: example #Zabbix TLS ID
+    TLSPSK: abc123 #TLS PSK file contents
+    
+  tasks:
+    - name: Update/Upgrade Cached Packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+#Install Desktop
+    - name: Install Required Programs - This will take a few minutes
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: 
+        - ubuntu-desktop
+        - gdm3
+        - qemu-guest-agent
+        
+    - name: Reboot Localhost
+      reboot:
+
+    - name: Update/Upgrade Cached Packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+#Install/Configure Zabbix
+    - name: Add zabbix repo
+      get_url: 
+        url: '{{ zabbix_url }}'
+        dest: '{{ zabbix_install_path }}'
+    
+    - name: Wait for file to download
+      wait_for:
+        path: '{{ zabbix_install_path }}'
+  
+    - name: Install Zabbix DPKG
+      apt:
+        deb: '{{ zabbix_install_path }}'
+
+    - name: Update Cache to see Zabbix
+      apt:
+        update_cache: yes
+    
+    - name: Install Zabbix
+      apt:
+        name: '{{ zabbix_package }}'
+
+    - name: Wait for file to exist
+      wait_for:
+        path: '{{ zabbix_conf }}'
+
+    - name: Get Hostname
+      command: hostname
+      register: local_hostname
+
+    - name: Configure Zabbix
+      lineinfile:
+        path: '{{ zabbix_conf }}'
+        regexp: "{{ item.regexp }}"
+        insertafter: "{{ item.insertafter }}"
+        line: "{{ item.line }}"
+      with_items:
+        - {regexp: '^Server=.*', insertafter: '^# Server=', line: 'Server= {{ SVRIP }}' }
+        - {regexp: '^ServerActive=.*', insertafter: '^# ServerActive=', line: 'ServerActive= {{ SVRIP }}' }
+        - {regexp: '^Hostname=.*', insertafter: '^# Hostname=', line: 'Hostname={{ local_hostname.stdout }}' }
+        - {regexp: '^DenyKey=.*', insertafter: '^# DenyKey=', line: 'AllowKey=system.run[*]' }
+        - {regexp: '^ListenPort=.*', insertafter: '^# ListenPort=', line: 'ListenPort=10050' }
+        - {regexp: '^TLSConnect=.*', insertafter: '^# TLSConnect=', line: 'TLSConnect=psk' }
+        - {regexp: '^TLSAccept=.*', insertafter: '^# TLSAccept=', line: 'TLSAccept=psk, unencrypted' }
+        - {regexp: '^TLSPSKIdentity=.*', insertafter: '^# TLSPSKIdentity=', line: 'TLSPSKIdentity={{ TLSID }}' }
+        - {regexp: '^Timeout=.*', insertafter: '^# Timeout=', line: 'Timeout=30'  }
+        - {regexp: '^TLSPSKFile=.*', insertafter: '^# TLSPSKFile=', line: 'TLSPSKFile= {{ TLSPSKFile }}'  }
+        - {regexp: '^HostMetadata=.*', insertafter: '^# HostMetadata=', line: 'HostMetadata=Linux'  }
+        
+    - name: Create psk.psk 
+      copy:
+        dest: '{{ PSK_PATH }}'
+        content: '{{ TLSPSK }}'
+
+    - name: Restart Zabbix-Agent
+      service:
+        name: '{{ zabbix_package }}'
+        state: restarted
+        enabled: yes
+
+#Run final updates/upgrades and reboot
+    - name: Update Cached Packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Reboot Localhost
+      reboot:

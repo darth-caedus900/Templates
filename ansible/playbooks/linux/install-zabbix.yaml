@@ -1,0 +1,84 @@
+#This playbook installs zabbix with defaults, exception being it adds PSK encryption.
+---
+# Assumes using SSH key. 
+- hosts: all
+  become: true
+
+### Update URL, Install path, and psk location as necessary ###
+# Assumes standard configuration of zabbix. Change as needed
+  vars:
+    SVRIP: 10.0.0.50 #IP address of Zabbix Server
+    zabbix_url: https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb
+    zabbix_install_path: /etc/zabbix-release_latest+ubuntu24.04_all.deb
+    zabbix_conf: /etc/zabbix/zabbix_agentd.conf
+    TLSPSKFile: /etc/zabbix/psk.psk #change to desired location of psk file
+    TLSPSK: abc123 #change to your PSK information. 
+    zabbix_agent_package: zabbix-agent
+
+  tasks:
+    - name: Update Cached Packages
+      apt:
+        update_cache: yes
+
+    - name: Add zabbix repo
+      get_url: 
+        url: '{{ zabbix_url }}'
+        dest: '{{ zabbix_install_path }}'
+  
+    - name: Install Zabbix repo package
+      apt:
+        deb: "{{ zabbix_install_path }}"
+
+    - name: Update Cached Packages to see Zabbix
+      apt:
+        update_cache: yes
+    
+    - name: Install Zabbix
+      apt:
+        name: "{{ zabbix_agent_package }}"
+        state: present
+
+    - name: Ensure Zabbix config file exists
+      stat:
+        path: "{{ zabbix_conf }}"
+      register: zabbix_conf_status
+
+    - name: Wait for Zabbix config to be created (if needed)
+      wait_for:
+        path: "{{ zabbix_conf }}"
+        timeout: 30
+      when: not zabbix_conf_status.stat.exists
+
+    - name: Get Hostname
+      command: hostname
+      register: local_hostname
+
+    - name: Configure Zabbix
+      lineinfile:
+        path: '{{ zabbix_conf }}'
+        regexp: "{{ item.regexp }}"
+        insertafter: "{{ item.insertafter }}"
+        line: "{{ item.line }}"
+      loop:
+        - {regexp: '^Server=.*', insertafter: '^# Server=', line: 'Server= {{ SVRIP }}' }
+        - {regexp: '^ServerActive=.*', insertafter: '^# ServerActive=', line: 'ServerActive= {{ SVRIP }}' }
+        - {regexp: '^Hostname=.*', insertafter: '^# Hostname=', line: 'Hostname={{ local_hostname.stdout }}' }
+        - {regexp: '^DenyKey=.*', insertafter: '^# DenyKey=', line: 'AllowKey=system.run[*]' }
+        - {regexp: '^ListenPort=.*', insertafter: '^# ListenPort=', line: 'ListenPort=10050' }
+        - {regexp: '^TLSConnect=.*', insertafter: '^# TLSConnect=', line: 'TLSConnect=psk' }
+        - {regexp: '^TLSAccept=.*', insertafter: '^# TLSAccept=', line: 'TLSAccept=psk, unencrypted' }
+        - {regexp: '^TLSPSKIdentity=.*', insertafter: '^# TLSPSKIdentity=', line: 'TLSPSKIdentity={{ TLSID }}' }
+        - {regexp: '^Timeout=.*', insertafter: '^# Timeout=', line: 'Timeout=30'  }
+        - {regexp: '^TLSPSKFile=.*', insertafter: '^# TLSPSKFile=', line: 'TLSPSKFile= {{ TLSPSKFile }}'  }
+        - {regexp: '^HostMetadata=.*', insertafter: '^# HostMetadata=', line: 'HostMetadata=Linux'  }
+
+    - name: Create psk.psk 
+      copy:
+        dest: '{{ TLSPSKFile }}'
+        content: '{{ TLSPSK }}'
+
+    - name: Restart and enable Zabbix agent
+      service:
+        name: "{{ zabbix_agent_package }}"
+        state: restarted
+        enabled: yes
