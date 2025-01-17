@@ -1,5 +1,6 @@
 ### Pull Request
 
-*Please write all text in English in order to facilitate communication and collaboration. Thank you!*
-
+*Please make sure the pull request follows the existing format and file structure.*
+- [ ] Conforms to existing file structure
+- [ ] Doesn't already exist in repo
 ---
