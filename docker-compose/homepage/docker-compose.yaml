@@ -1,0 +1,25 @@
+#Homepage website;
+#https://gethomepage.dev
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    env_file: .env # use .env
+    volumes:
+      - /opt/homepage:/app/config # Make sure your local config directory exists
+      - /opt/homepage/images:/app/public/images
+      - /opt/homepage/icons:/app/public/icons
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    restart: always
+    environment: #examples only. MUST have "HOMEPAGE_VAR_" for it to be used.
+      HOMEPAGE_VAR_PROXMOX_USERNAME: $HOMEPAGE_VAR_PROXMOX_USERNAME
+      HOMEPAGE_VAR_PROXMOX_PASSWORD: $HOMEPAGE_VAR_PROXMOX_PASSWORD
+      HOMEPAGE_VAR_FRESHRSS_USERNAME: $HOMEPAGE_VAR_FRESHRSS_USERNAME
+      HOMEPAGE_VAR_FRESHRSS_API: $HOMEPAGE_VAR_FRESHRSS_API
+      HOMEPAGE_VAR_PBS_USER: $HOMEPAGE_VAR_PBS_USER
+      HOMEPAGE_VAR_PBS_PASSWORD: $HOMEPAGE_VAR_PBS_PASSWORD
+      HOMEPAGE_VAR_PORTAINER: $HOMEPAGE_VAR_PORTAINER
+      HOMEPAGE_VAR_WGEASY: $HOMEPAGE_VAR_WGEASY
+      HOMEPAGE_VAR_MYSPEED: $HOMEPAGE_VAR_MYSPEED

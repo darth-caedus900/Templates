@@ -1,0 +1,14 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Infrastructure:
+    - Proxmox:
+        href: https://192.168.100.41:8006
+        description: 
+        icon: proxmox.png
+        widget:
+            type: proxmox
+            url: https://10.0.0.1:8006
+            username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}" #example of var usage
+            password: "{{HOMEPAGE_VAR_PROXMOX_PASSWORD}}"
