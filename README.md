@@ -18,7 +18,6 @@ Some basic Ansible and Docker Compose files with some scripts I found helpful!
 
 ## Contributors
 
-[![Contributors]
-(https://github.com/kbrown900/Templates/graphs/contributors)](https://contrib.rocks/image?repo=kbrown900/Templates)
+[![Contributors](https://contrib.rocks/image?repo=kbrown900/Templates)](https://github.com/kbrown900/Templates/graphs/contributors)
 
 Made with [contrib.rocks](https://contrib.rocks).
