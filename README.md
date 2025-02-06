@@ -1,5 +1,6 @@
 # Templates
-Some basic Ansible and Docker Compose files with some scripts I found helpful! 
+
+Some basic Ansible and Docker Compose files with some scripts I found helpful!
 
 [![GitHub contributors](https://img.shields.io/github/contributors-anon/kbrown900/Templates?style=for-the-badge)](https://github.com/kbrown900/Templates/graphs/contributors)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/kbrown900/Templates?style=for-the-badge)](https://github.com/kbrown900/Templates/commits/main/)
@@ -15,7 +16,8 @@ Some basic Ansible and Docker Compose files with some scripts I found helpful!
 
 [Helpful Scripts](https://github.com/kbrown900/Templates/tree/main/scripts)
 
-# Contributors
+## Contributors
+
 <a href="https://github.com/kbrown900/Templates/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=kbrown900/Templates" />
 </a>
