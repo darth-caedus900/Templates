@@ -1,6 +1,6 @@
 # Security Policy
 
-We take security very seriously. Please notify immediately if you find any security issues and we will address them accordingly. 
+We take security very seriously. Please notify immediately if you find any security issues and we will address them accordingly.
 
 ❗As this is just templates to jump-start off of, best practices may not always followed so please do bear that in mind during reporting. ❗
 
