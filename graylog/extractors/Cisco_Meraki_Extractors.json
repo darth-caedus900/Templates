@@ -19,7 +19,7 @@
       "title": "General - Hostname",
       "extractor_type": "split_and_index",
       "converters": [],
-      "order": 2,
+      "order": 3,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "hostname",
@@ -34,7 +34,7 @@
       "title": "Flows - Source port",
       "extractor_type": "regex",
       "converters": [],
-      "order": 3,
+      "order": 4,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "source_port",
@@ -48,7 +48,7 @@
       "title": "Flows - Destination port",
       "extractor_type": "regex",
       "converters": [],
-      "order": 5,
+      "order": 6,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "destination_port",
@@ -62,7 +62,7 @@
       "title": "URLS & Flows - Source mac address",
       "extractor_type": "regex",
       "converters": [],
-      "order": 16,
+      "order": 18,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "source_mac_address",
@@ -76,7 +76,7 @@
       "title": "Flow - Translated Source IP",
       "extractor_type": "regex",
       "converters": [],
-      "order": 6,
+      "order": 7,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "translated_src_ip",
@@ -90,7 +90,7 @@
       "title": "URLS - Source address",
       "extractor_type": "regex",
       "converters": [],
-      "order": 11,
+      "order": 13,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "source_address",
@@ -104,7 +104,7 @@
       "title": "URLS - Request URL",
       "extractor_type": "regex",
       "converters": [],
-      "order": 10,
+      "order": 12,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "request_url",
@@ -118,7 +118,7 @@
       "title": "URLS - Request type",
       "extractor_type": "regex",
       "converters": [],
-      "order": 9,
+      "order": 11,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "request_type",
@@ -132,7 +132,7 @@
       "title": "URLS - Source port",
       "extractor_type": "regex",
       "converters": [],
-      "order": 12,
+      "order": 14,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "source_port",
@@ -146,7 +146,7 @@
       "title": "URLS - Destination Port",
       "extractor_type": "regex",
       "converters": [],
-      "order": 14,
+      "order": 16,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "destination_port",
@@ -167,7 +167,7 @@
           }
         }
       ],
-      "order": 1,
+      "order": 2,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "epoch",
@@ -178,66 +178,10 @@
       "condition_value": ""
     },
     {
-      "title": "URLS - Destination IP",
-      "extractor_type": "regex",
-      "converters": [],
-      "order": 13,
-      "cursor_strategy": "copy",
-      "source_field": "message",
-      "target_field": "destination_ip",
-      "extractor_config": {
-        "regex_value": "dst=(\\d+\\.\\d+\\.\\d+\\.\\d+)"
-      },
-      "condition_type": "none",
-      "condition_value": ""
-    },
-    {
-      "title": "Firewall - Protocol",
-      "extractor_type": "regex",
-      "converters": [],
-      "order": 17,
-      "cursor_strategy": "copy",
-      "source_field": "message",
-      "target_field": "protocol",
-      "extractor_config": {
-        "regex_value": "protocol=(\\S+)"
-      },
-      "condition_type": "none",
-      "condition_value": ""
-    },
-    {
-      "title": "Firewall - Pattern",
-      "extractor_type": "regex",
-      "converters": [],
-      "order": 18,
-      "cursor_strategy": "copy",
-      "source_field": "message",
-      "target_field": "pattern",
-      "extractor_config": {
-        "regex_value": "pattern:\\s*(.+)"
-      },
-      "condition_type": "none",
-      "condition_value": ""
-    },
-    {
-      "title": "URLS - Request agent",
-      "extractor_type": "regex",
-      "converters": [],
-      "order": 15,
-      "cursor_strategy": "copy",
-      "source_field": "message",
-      "target_field": "request_agent",
-      "extractor_config": {
-        "regex_value": "user_agent=\"([^\"]+)\""
-      },
-      "condition_type": "none",
-      "condition_value": ""
-    },
-    {
       "title": "Flows - Action",
       "extractor_type": "regex",
       "converters": [],
-      "order": 8,
+      "order": 9,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "action",
@@ -251,7 +195,7 @@
       "title": "Flows - Destination Address",
       "extractor_type": "regex",
       "converters": [],
-      "order": 4,
+      "order": 5,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "destination_address",
@@ -265,12 +209,390 @@
       "title": "Flow - Translated Port",
       "extractor_type": "regex",
       "converters": [],
-      "order": 7,
+      "order": 8,
       "cursor_strategy": "copy",
       "source_field": "message",
       "target_field": "translated_port",
       "extractor_config": {
         "regex_value": "translated_port=([^:\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Request agent",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 17,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "request_agent",
+      "extractor_config": {
+        "regex_value": "agent='([^\"]+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Destination Address",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 15,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "destination_address",
+      "extractor_config": {
+        "regex_value": "dst=(\\d+\\.\\d+\\.\\d+\\.\\d+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "General - Syslog Version",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "syslog_ver",
+      "extractor_config": {
+        "regex_value": "<\\d+>(\\d+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Air Marshal - Type",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 20,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "wireless_type",
+      "extractor_config": {
+        "regex_value": "type=([\\w_]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Radio",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 21,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "radio_band",
+      "extractor_config": {
+        "regex_value": "radio='(\\d+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Virtual Access Point",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 22,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "vap",
+      "extractor_config": {
+        "regex_value": "vap='(\\d+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Channel",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 23,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "channel",
+      "extractor_config": {
+        "regex_value": "channel='(\\d+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flows - Protocol",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 10,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "protocol",
+      "extractor_config": {
+        "regex_value": "protocol=(\\S+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Pattern",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 19,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "pattern",
+      "extractor_config": {
+        "regex_value": "pattern:\\s*(.+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DA Vendor",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 24,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "da_vendor",
+      "extractor_config": {
+        "regex_value": "da_vendor='([^']*)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Duration",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 25,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "connection_duration",
+      "extractor_config": {
+        "regex_value": "duration='([\\d\\.]+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Authentication Negotiation Duration",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 26,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "auth_neg_dur",
+      "extractor_config": {
+        "regex_value": "auth_neg_dur='([\\d\\.]+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Last Authentication Ago",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 27,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "last_auth_ago",
+      "extractor_config": {
+        "regex_value": "last_auth_ago='([\\d\\.]+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - WPA Status",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 28,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "is_wpa",
+      "extractor_config": {
+        "regex_value": "is_wpa='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Full Connection Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 29,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "full_conn_time",
+      "extractor_config": {
+        "regex_value": "full_conn='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - IP Response Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 30,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "ip_response_time",
+      "extractor_config": {
+        "regex_value": "ip_resp='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - HTTP Response Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 31,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "http_resp_time",
+      "extractor_config": {
+        "regex_value": "http_resp='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - ARP Response Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 32,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "arp_response_time",
+      "extractor_config": {
+        "regex_value": "arp_resp='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - ARP Source",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 33,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "arp_src",
+      "extractor_config": {
+        "regex_value": "arp_src='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DHCP Lease Completed",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 37,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dhcp_lease_completed",
+      "extractor_config": {
+        "regex_value": "dhcp_lease_completed='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - Association ID",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 41,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "aid",
+      "extractor_config": {
+        "regex_value": "aid='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DNS Response Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 36,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dns_resp_time",
+      "extractor_config": {
+        "regex_value": "dns_resp='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DNS Request Round-Trip Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 35,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dns_req_rtt",
+      "extractor_config": {
+        "regex_value": "dns_req_rtt='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DHCP Server",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 38,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dhcp_server",
+      "extractor_config": {
+        "regex_value": "dhcp_server='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DHCP Response Time",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 40,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dhcp_resp",
+      "extractor_config": {
+        "regex_value": "dhcp_resp='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DHCP Server MAC",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 39,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dhcp_server_mac",
+      "extractor_config": {
+        "regex_value": "dhcp_server_mac='([^']+)'"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Wireless - DNS Server",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 34,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dns_server",
+      "extractor_config": {
+        "regex_value": "dns_server='([^']+)'"
       },
       "condition_type": "none",
       "condition_value": ""
