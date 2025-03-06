@@ -1,0 +1,280 @@
+{
+  "extractors": [
+    {
+      "title": "General - Category",
+      "extractor_type": "split_and_index",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "category",
+      "extractor_config": {
+        "index": 4,
+        "split_by": " "
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "General - Hostname",
+      "extractor_type": "split_and_index",
+      "converters": [],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "hostname",
+      "extractor_config": {
+        "index": 3,
+        "split_by": " "
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flows - Source port",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 3,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "source_port",
+      "extractor_config": {
+        "regex_value": "sport=([^\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flows - Destination port",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 5,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "destination_port",
+      "extractor_config": {
+        "regex_value": "dport=([^\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS & Flows - Source mac address",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 16,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "source_mac_address",
+      "extractor_config": {
+        "regex_value": "mac=([^\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flow - Translated Source IP",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 6,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "translated_src_ip",
+      "extractor_config": {
+        "regex_value": "translated_src_ip=([^:\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Source address",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 11,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "source_address",
+      "extractor_config": {
+        "regex_value": "src=([^:\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Request URL",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 10,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "request_url",
+      "extractor_config": {
+        "regex_value": "request:\\s*\\S+\\s+(https?://[^\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Request type",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 9,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "request_type",
+      "extractor_config": {
+        "regex_value": "request:\\s*(\\S+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Source port",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 12,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "source_port",
+      "extractor_config": {
+        "regex_value": "src=\\d+\\.\\d+\\.\\d+\\.\\d+:(\\d+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Destination Port",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 14,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "destination_port",
+      "extractor_config": {
+        "regex_value": "dst=\\d+\\.\\d+\\.\\d+\\.\\d+:(\\d+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "General - Epoch (no MS precision)",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "flexdate",
+          "config": {
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "epoch",
+      "extractor_config": {
+        "regex_value": "<\\d+>1\\s+([\\d\\.]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Destination IP",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 13,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "destination_ip",
+      "extractor_config": {
+        "regex_value": "dst=(\\d+\\.\\d+\\.\\d+\\.\\d+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Firewall - Protocol",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 17,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "protocol",
+      "extractor_config": {
+        "regex_value": "protocol=(\\S+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Firewall - Pattern",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 18,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "pattern",
+      "extractor_config": {
+        "regex_value": "pattern:\\s*(.+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "URLS - Request agent",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 15,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "request_agent",
+      "extractor_config": {
+        "regex_value": "user_agent=\"([^\"]+)\""
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flows - Action",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 8,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "action",
+      "extractor_config": {
+        "regex_value": "action=(\\S+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flows - Destination Address",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 4,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "destination_address",
+      "extractor_config": {
+        "regex_value": "dst=([^:\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Flow - Translated Port",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 7,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "translated_port",
+      "extractor_config": {
+        "regex_value": "translated_port=([^:\\s]+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    }
+  ],
+  "version": "6.1.8"
+}
