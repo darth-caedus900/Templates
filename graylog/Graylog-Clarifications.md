@@ -10,6 +10,8 @@ This extractor is based on [Graylog-Meraki-Content-Pack](https://github.com/ddbn
 
 ### Cisco Meraki Content Pack
 
+Currently working on revision to remove manual work invloved.
+
 The content pack requires a custom index and Field Profile type which cannot be exported at the time of writing this (3/21/25).
 To get everything working correctly first follow these steps before import. 
 
@@ -74,4 +76,3 @@ To get everything working correctly first follow these steps before import.
 
  - 4 Create a new Index and attach the newly created Field Type Profile to it.
  - 5 Import the Content Pack
- - 6 to be completed
