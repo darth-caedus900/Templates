@@ -1,0 +1,20 @@
+key,value
+0,Kernel
+1,User-Level
+2,Mail
+3,System Daemons
+4,Security/Auth
+5,Syslog
+6,Printer
+7,News
+8,UUCP
+9,Clock
+10,Security/Auth (2)
+11,FTP
+12,NTP
+13,Audit
+14,Alert
+15,Clock (2)
+16,Local0
+17,Local1
+18,Local2
