@@ -1,0 +1,20 @@
+key,value
+0_0,Association Request
+0_1,Association Response
+0_2,Reassociation Request
+0_3,Reassociation Response
+0_4,Probe Request
+0_5,Probe Response
+0_8,Beacon
+0_10,Disassociation
+0_11,Authentication
+0_12,Deauthentication
+1_9,Block Acknowledgment (Block ACK)
+1_10,Request to Send (RTS)
+1_11,Clear to Send (CTS)
+1_12,Acknowledgment (ACK)
+1_13,Power Save Poll (PS-Poll)
+2_0,Data
+2_1,Data + CF-Ack
+2_2,Data + CF-Poll
+2_3,Data + CF-Ack + CF-Poll
