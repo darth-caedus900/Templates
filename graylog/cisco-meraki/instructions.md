@@ -8,12 +8,16 @@ Modify the Lookup Data Adapters should something fail.
     sudo touch syslog_severity_mapping.csv
     sudo touch is_wpa.csv
     sudo touch facility.csv
+    sudo touch fc_combined.csv
+    sudo touch band.csv
 
 After creating the files, paste the contents of the associated csv to the correct file.
 
     sudo nano syslog_severity_mapping.csv
     sudo nano is_wpa.csv
     sudo nano facility.csv
+    sudo nano fc_combined.csv
+    sudo nano band.csv    
 
 ## To do
 
