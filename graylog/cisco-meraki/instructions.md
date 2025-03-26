@@ -1,7 +1,6 @@
 # Install Steps
 
-Install this content pack like you would any other. It should keep the mappings but I included them in this repo just in case they do not.
-Modify the Lookup Data Adapters should something fail.
+Install this content pack like you would any other. You will need to manually save the csv files. Here are some commands to create the files, but you will need to copy/paste the information in. I have provided the csv's used. I set the lookup tables to reference /etc/graylog/files but feel free to modify to meet needs. There are probably better ways to do this but here is how I found. If you find any issues or recomendations let me know!
 
     sudo mkdir /etc/graylog/files
     sudo cd /etc/graylog/files
