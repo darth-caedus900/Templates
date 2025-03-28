@@ -14,6 +14,8 @@ Some basic Ansible and Docker Compose files with some scripts I found helpful!
 
 [Docker](https://github.com/kbrown900/Templates/tree/main/docker)
 
+[Graylog](https://github.com/kbrown900/Templates/tree/main/graylog)
+
 [Helpful Scripts](https://github.com/kbrown900/Templates/tree/main/scripts)
 
 ## Contributors
