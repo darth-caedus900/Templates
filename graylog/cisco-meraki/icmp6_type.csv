@@ -1,0 +1,12 @@
+key,value
+1,Destination Unreachable
+2,Packet Too Big
+3,Time Exceeded
+4,Parameter Problem
+128,Echo Request
+129,Echo Reply
+133,Router Solicitation
+134,Router Advertisement
+135,Neighbor Solicitation
+136,Neighbor Advertisement
+143,MLDv2 Report
