@@ -1,4 +1,8 @@
-# Includes
+# Content Pack for Parsing Cisco Meraki syslogs
+
+---
+
+## Includes
 
 - Input (Raw/Plaintext UDP)
 - Streams (Stream for Input, and File Conversion)
