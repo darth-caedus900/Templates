@@ -29,6 +29,8 @@ Run these commands to make the various files you will need. The contents of the 
     sudo touch reason.csv
     sudo touch icmp_type.csv
     sudo touch protocol.csv
+    sudo touch radio.csv
+    sudo touch snort_priority.csv
 
 After creating the files, paste the contents of the associated csv to the correct file.
 
@@ -39,7 +41,9 @@ After creating the files, paste the contents of the associated csv to the correc
     sudo nano band.csv 
     sudo nano reason.csv
     sudo nano icmp_type.csv
-    sudo nano protocol.csv 
+    sudo nano protocol.csv
+    sudo nano radio.csv
+    sudo nano snort_priority.csv
 
 ## To do
 

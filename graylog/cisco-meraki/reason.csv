@@ -1,51 +1,32 @@
 key,value
-0,"Successful"
-1,"Unspecified failure"
-2,"Tunneled direct link setup (TDLS) wakeup schedule rejected but alternative schedule provided"
-3,"TDLS wakeup schedule rejected"
-5,"Security disabled"
-6,"Unacceptable lifetime"
-7,"Not in same basic service set (BSS)"
-10,"Can't support all requested capabilities in capability information field"
-11,"Reassociation denied due to inability to confirm that association exists"
-12,"Association denied due to reason outside scope of this standard"
-13,"Responding station doesn't support specified authentication algorithm"
-14,"Received authentication frame with authentication transaction sequence number out of expected sequence"
-15,"Authentication rejected because of challenge failure"
-16,"Authentication rejected due to timeout waiting for next frame in sequence"
-17,"Association denied because AP unable to handle additional associated stations"
-18,"Association denied due to requesting station not supporting all data rates in the BSSBasicRateSet parameter, where BSS refers to basic service set"
-19,"Association denied due to requesting station not supporting short preamble option"
-20,"Association denied due to requesting station not supporting packet binary convolutional code (PBCC) modulation option"
-21,"Association denied due to requesting station not supporting channel agility option"
-22,"Association request rejected because spectrum management capability required"
-23,"Association request rejected because of unacceptable information in the power capability element"
-24,"Association request rejected because of unacceptable information in the supported channels element"
-25,"Association denied due to requesting station not supporting short slot time option"
-26,"Association denied due to requesting station not supporting direct sequence spread spectrum orthogonal frequency division multiplexing (DSSS-OFDM) option"
-27,"Association denied because requesting station doesn't support high throughput (HT) features"
-28,"Pairwise master key (PMK-R0) Key Holder (R0KH) unreachable"
-29,"Association denied because requesting station doesn't support phased coexistence operation (PCO) transition time required by the AP"
-30,"Association request rejected temporarily; try again later"
-31,"Robust management frame policy violation"
-32,"Unspecified. Quality of service (QoS)-related failure"
-33,"Association denied because QoS AP has insufficient bandwidth to handle another QoS station"
-34,"Association denied due to excessive frame loss rates or poor conditions on current operating channel, or both"
-35,"Association (with QoS BSS) denied because the requesting station does not support the QoS facility"
-37,"Request declined"
-38,"Request not successful as one or more parameters have invalid values"
-39,"Traffic stream (TS) not created because request can't be honored; however, suggested traffic specification (TSPEC) provided so that the initiating station may attempt to set another TS with suggested changes to TSPEC"
-40,"Invalid information element (doesn't follow 802.11 standard)"
-41,"Invalid group cipher"
-42,"Invalid pairwise cipher"
-43,"Invalid authentication and key management protocol (AKMP)"
-44,"Unsupported robust security network element (RSNE) information element version"
-45,"Invalid RSNE information element capabilities"
-46,"Cipher suite rejected because of security policy"
-47,"TS not created; however, hybrid coordinator (HC) may be capable of creating TS, in response to a request, after the time indicated in TS delay element"
-48,"Direct link not allowed in the BSS by policy"
-49,"Destination station not present within this BSS"
-50,"Destination station not a QoS station"
-51,"Association denied because ListenInterval too large"
-52,"Invalid fast transition (FT) action frame count"
-53,"Invalid shared key (pairwise master key identifier or PMKID)"
+1,Unspecified reason
+2,Previous authentication no longer valid
+3,Deauthenticated because sending station is leaving (or has left) IBSS or ESS
+4,Disassociated due to inactivity
+5,Disassociated because AP is unable to handle all currently associated stations
+6,Class 2 frame received from nonauthenticated station
+7,Class 3 frame received from nonassociated station
+8,Disassociated because sending station is leaving BSS
+9,Station requesting disassociation
+10,Disassociated due to insufficient resources
+11,Invalid class 2 frame
+12,Invalid class 3 frame
+13,Disassociated due to unacceptable power capability element
+14,Disassociated due to unacceptable supported channels element
+15,Invalid information element
+16,Message integrity code failure
+17,4-Way Handshake timeout
+18,Group key update timeout
+19,Information element in 4-Way Handshake is different
+20,Invalid group cipher
+21,Invalid pairwise cipher
+22,Invalid AKMP
+23,Unsupported RSN IE version
+24,Invalid RSN IE capabilities
+25,802.1X authentication failed
+26,Cipher suite rejected because of security policy
+34,Disassociated because session timeout
+37,Disassociated because of restricted access policy
+38,Disassociated because of Authorization De-clined
+39,Disassociated because of Authorization Timeout
+45,Peer STA does not support the requested cipher suite
