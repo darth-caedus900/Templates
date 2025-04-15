@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "id": "227b102c-66f1-4dfe-b1f5-ceca998475bb",
+  "id": "c2685c4f-a695-4159-b36e-e433af4c15cd",
   "rev": 1,
   "name": "Cisco Meraki",
   "summary": "Takes in raw Cisco Meraki Logs and extracts the fields. Uses port 1514",
@@ -15,7 +15,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "29669366-9d70-4535-a3de-b844e788b416",
+      "id": "8252a818-2cd6-4ef0-9de7-52bffea393c5",
       "data": {
         "title": {
           "@type": "string",
@@ -43,7 +43,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "1b256b4e-79d7-40fe-b022-32b87e8f4984",
+      "id": "248c7454-6b16-4f59-ae0c-a1bc762edaa2",
       "data": {
         "title": {
           "@type": "string",
@@ -71,7 +71,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "de810f4b-9c8b-4395-910a-645e5ae8c3fe",
+      "id": "f6a261e1-6517-42cf-b530-957d7e657748",
       "data": {
         "title": {
           "@type": "string",
@@ -99,7 +99,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "09976602-0300-4a50-a6c6-6c677bd1d4f0",
+      "id": "623475fb-46fa-4406-a642-8e0570356140",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -107,7 +107,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -123,7 +123,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "f76a4f70-7967-496f-8b0a-f8b05a8aecbf"
+          "@value": "98d96929-a8fa-4c64-bf74-b07bf5c712a1"
         },
         "_scope": {
           "@type": "string",
@@ -155,7 +155,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "900405f2-f758-47fe-bc4d-7d811a47a9ca",
+      "id": "629ce0eb-5c5b-40ff-928b-7bc7d0e6ef2f",
       "data": {
         "title": {
           "@type": "string",
@@ -183,7 +183,7 @@
         "name": "event_definition",
         "version": "1"
       },
-      "id": "f057d9fe-3902-4294-88c8-738ac408218f",
+      "id": "eb9970cd-a9e1-4857-87c5-86db4373041e",
       "data": {
         "field_spec": {},
         "config": {
@@ -230,7 +230,7 @@
         },
         "notifications": [],
         "remediation_steps": null,
-        "matched_at": "2025-04-15T16:05:44.338Z",
+        "matched_at": "2025-04-15T21:35:44.338Z",
         "_scope": {
           "@type": "string",
           "@value": "DEFAULT"
@@ -279,7 +279,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "8673d173-61db-4cd7-9a33-1e3b0d4a2621",
+      "id": "3fa290e3-1937-442a-be44-350ec90a3636",
       "data": {
         "title": {
           "@type": "string",
@@ -291,7 +291,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Flows\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} flows\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} %{WORD:action}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{WORD:protocol}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{INT:protocol_number:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sport=%{INT:src_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dport=%{INT:dst_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{BASE10NUM:icmp_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\nend"
+          "@value": "rule \"Meraki - Flows\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} flows\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} %{WORD:action}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{WORD:protocol}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{INT:protocol_number:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sport=%{INT:src_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dport=%{INT:dst_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{BASE10NUM:icmp_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\nend"
         }
       },
       "constraints": [
@@ -307,7 +307,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "d6a8217e-cecd-4e4d-8031-d557fc7e1e33",
+      "id": "0f0a1ceb-d5ab-4216-b958-44808bc7eddf",
       "data": {
         "title": {
           "@type": "string",
@@ -319,7 +319,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - IP Flow\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"ip_flow\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{WORD:protocol}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sport=%{INT:src_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dport=%{INT:dst_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"translated_src_ip=%{IP:translated_src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"translated_port=%{INT:translated_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
+          "@value": "rule \"Meraki - IP Flow\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"ip_flow\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{WORD:protocol}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sport=%{INT:src_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dport=%{INT:dst_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"translated_src_ip=%{IP:translated_src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"translated_port=%{INT:translated_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
         }
       },
       "constraints": [
@@ -335,7 +335,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "29111b6e-bd9d-4ace-8592-28f9ace6d459",
+      "id": "15c360da-fed0-4e17-b221-edf83129d626",
       "data": {
         "title": {
           "@type": "string",
@@ -363,7 +363,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "f18fda5b-df66-4ec4-9d07-b948734cfd05",
+      "id": "f2582e1d-14b0-4e5c-8155-b4f521492c0b",
       "data": {
         "title": {
           "@type": "string",
@@ -391,7 +391,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "2a4aa3af-e1d0-4cba-8cb0-784e9df8c9e0",
+      "id": "a12401a6-dc04-4040-954e-40c9fdabad36",
       "data": {
         "title": {
           "@type": "string",
@@ -403,7 +403,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - Route Connection Change\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"route_connection_change\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} type=%{DATA:event_type} peer_type='%{DATA:peer_type}' \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"peer='%{IP:peer}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"connection_status='%{WORD:connection_status}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - Route Connection Change\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"route_connection_change\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} type=%{DATA:event_type} peer_type='%{DATA:peer_type}' \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"peer='%{IP:peer}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"connection_status='%{WORD:connection_status}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
         }
       },
       "constraints": [
@@ -419,7 +419,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "90018415-2987-4090-b701-f00e0c93a29f",
+      "id": "ebb01404-fd4b-4b44-a056-35c7271a421a",
       "data": {
         "title": {
           "@type": "string",
@@ -431,7 +431,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - STP Role Change\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"changed STP role\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"Port %{BASE10NUM:switch_port:INT} changed STP role from %{WORD:old_stp_role} to %{WORD:new_stp_role}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"STP Role Change\",\n    prefix : \"meraki_\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - STP Role Change\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"changed STP role\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"Port %{BASE10NUM:switch_port:INT} changed STP role from %{WORD:old_stp_role} to %{WORD:new_stp_role}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"STP Role Change\",\n    prefix : \"meraki_\"\n  );\nend"
         }
       },
       "constraints": [
@@ -447,7 +447,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "3bf7eeb8-18e7-4c8c-b410-41791d5bfd5d",
+      "id": "d6623776-f7aa-46ba-bb02-513746658910",
       "data": {
         "title": {
           "@type": "string",
@@ -459,77 +459,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Airmarshal Events\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"airmarshal_events\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type='%{WORD:airmarshal_event_type}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ssid='%{DATA:ssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"bssid='%{COMMONMAC:bssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src='%{COMMONMAC:src_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst='%{COMMONMAC:dst_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"wired_mac='%{COMMONMAC:wired_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vlan_id='%{DATA:vlan_id}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"channel='%{BASE10NUM:channel}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"rssi='%{BASE10NUM:rssi}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_type='%{BASE10NUM:fc_type}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_subtype='%{BASE10NUM:fc_subtype}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\nend"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
-        "name": "lookup_adapter",
-        "version": "1"
-      },
-      "id": "2425f070-29b8-4528-a874-89e9d6e8c0ac",
-      "data": {
-        "_scope": {
-          "@type": "string",
-          "@value": "DEFAULT"
-        },
-        "name": {
-          "@type": "string",
-          "@value": "facility-mapping"
-        },
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - Facility Mapping"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Maps Meraki Facility to its actuals"
-        },
-        "configuration": {
-          "value_column": {
-            "@type": "string",
-            "@value": "value"
-          },
-          "path": {
-            "@type": "string",
-            "@value": "/etc/graylog/files/facility.csv"
-          },
-          "cidr_lookup": {
-            "@type": "boolean",
-            "@value": false
-          },
-          "separator": {
-            "@type": "string",
-            "@value": ","
-          },
-          "quotechar": {
-            "@type": "string",
-            "@value": "\""
-          },
-          "key_column": {
-            "@type": "string",
-            "@value": "key"
-          },
-          "case_insensitive_lookup": {
-            "@type": "boolean",
-            "@value": false
-          },
-          "type": {
-            "@type": "string",
-            "@value": "csvfile"
-          },
-          "check_interval": {
-            "@type": "long",
-            "@value": 60
-          }
+          "@value": "rule \"Meraki - Airmarshal Events\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"airmarshal_events\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type='%{WORD:airmarshal_event_type}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ssid='%{DATA:ssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"bssid='%{COMMONMAC:bssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src='%{COMMONMAC:src_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst='%{COMMONMAC:dst_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"wired_mac='%{COMMONMAC:wired_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vlan_id='%{DATA:vlan_id}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"channel='%{BASE10NUM:channel}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"rssi='%{BASE10NUM:rssi}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_type='%{BASE10NUM:fc_type}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_subtype='%{BASE10NUM:fc_subtype}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\nend"
         }
       },
       "constraints": [
@@ -545,7 +475,7 @@
         "name": "event_definition",
         "version": "1"
       },
-      "id": "db301bdf-b8bb-4749-95cd-8f6b473f02d2",
+      "id": "e114728d-c5ca-46d1-86fc-00e160e4d899",
       "data": {
         "field_spec": {},
         "config": {
@@ -559,7 +489,7 @@
           "cron_timezone": null,
           "use_cron_scheduling": false,
           "streams": [
-            "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+            "09840169-d1b8-4f30-97b3-f989e98accd5"
           ],
           "execute_every_ms": 600000,
           "event_limit": 5,
@@ -627,7 +557,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "af303672-e8cb-41a6-ac11-7ac78346a8b1",
+      "id": "193066f4-290f-4e2e-92d1-9ec6212b90fd",
       "data": {
         "title": {
           "@type": "string",
@@ -655,7 +585,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "dd8d2c5e-bc4c-4f7a-a55c-f705d6e3c310",
+      "id": "e6be811c-750a-464d-ab71-e32c29e495d9",
       "data": {
         "title": {
           "@type": "string",
@@ -683,7 +613,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "bceccc5e-ee69-490b-b0f9-dc31fc2d8ba3",
+      "id": "ea1ae4d2-28f8-4c0f-8439-1a7a9c83eeb9",
       "data": {
         "title": {
           "@type": "string",
@@ -711,7 +641,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "d7d03a8e-0767-450f-b9fe-be74d6a4e055",
+      "id": "6fa8977c-30c8-44bc-b227-952569884ba2",
       "data": {
         "title": {
           "@type": "string",
@@ -739,7 +669,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "d5ae1b9c-6158-4930-aba1-8cd1301b1e8a",
+      "id": "d1fcf319-bbd5-44d1-b9e8-c95d7fb92237",
       "data": {
         "_scope": {
           "@type": "string",
@@ -809,7 +739,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "6ca033df-7022-45b1-b8d8-5cc6f476d95f",
+      "id": "f542065a-e570-483f-82dc-1fd4c92c8fbe",
       "data": {
         "title": {
           "@type": "string",
@@ -837,7 +767,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "4d3c9380-024d-47a3-921f-599c5e604461",
+      "id": "dd649b03-bb6c-4f01-b3aa-11aaf214ac71",
       "data": {
         "_scope": {
           "@type": "string",
@@ -907,7 +837,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "079861b9-36b3-4e0f-b9bc-77db7561c825",
+      "id": "eccc24b3-ceee-44a4-93d5-1af205f7ef55",
       "data": {
         "title": {
           "@type": "string",
@@ -935,7 +865,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "0fcb9c7c-b979-4406-87ee-737dee7d5f49",
+      "id": "326fd286-8099-46a3-8335-270016d97d3d",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -943,7 +873,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -959,7 +889,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "d5ae1b9c-6158-4930-aba1-8cd1301b1e8a"
+          "@value": "d1fcf319-bbd5-44d1-b9e8-c95d7fb92237"
         },
         "_scope": {
           "@type": "string",
@@ -991,7 +921,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "80c12f6d-35c8-4770-b1a7-b0cc7b9cf7a7",
+      "id": "0b3b24c6-f296-49b1-9d7f-a64b38148dff",
       "data": {
         "title": {
           "@type": "string",
@@ -1003,7 +933,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - IDS Alerts\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"ids-alerts\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{DATA:category} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"signature=%{DATA:signature} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"priority=%{BASE10NUM:priority:INT} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"timestamp=%{BASE10NUM:event_epoch:DOUBLE}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"direction=%{WORD:direction}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{DATA:protocol} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IPV4:src_ip}:%{INT:src_port}|src=%{IPV6:src_ip}:%{INT:src_port}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"IDS Alert\",\n    prefix : \"meraki_\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
+          "@value": "rule \"Meraki - IDS Alerts\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"ids-alerts\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{DATA:category} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"signature=%{DATA:signature} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"priority=%{BASE10NUM:priority:INT} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"timestamp=%{BASE10NUM:event_epoch:DOUBLE}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"direction=%{WORD:direction}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{DATA:protocol} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IPV4:src_ip}:%{INT:src_port}|src=%{IPV6:src_ip}:%{INT:src_port}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"IDS Alert\",\n    prefix : \"meraki_\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
         }
       },
       "constraints": [
@@ -1019,7 +949,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "67205b01-d800-4cbe-a6e3-c2a4c77c9427",
+      "id": "f1d732fd-ae0c-406d-a6b9-dacc9e304163",
       "data": {
         "_scope": {
           "@type": "string",
@@ -1089,7 +1019,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "f997ca97-c63d-4b0b-9e32-e5ec43370f5e",
+      "id": "2986e938-24fe-462d-8de0-de0a8dd8fc88",
       "data": {
         "title": {
           "@type": "string",
@@ -1117,7 +1047,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "a868e754-f334-4554-9a8b-6f48c395b896",
+      "id": "583ce77d-4b6b-439c-883d-c898da195665",
       "data": {
         "title": {
           "@type": "string",
@@ -1129,7 +1059,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - Two MACs Same IP\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"events MAC \"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"events MAC %{COMMONMAC:mac1} and MAC %{COMMONMAC:mac2} both claim IP: %{IP:claimed_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"meraki_issue\",\n    value : \"Two MACs claim single IP\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - Two MACs Same IP\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"events MAC \"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"events MAC %{COMMONMAC:mac1} and MAC %{COMMONMAC:mac2} both claim IP: %{IP:claimed_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"meraki_issue\",\n    value : \"Two MACs claim single IP\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
         }
       },
       "constraints": [
@@ -1145,7 +1075,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "805e491f-0186-462e-a942-71de72a88cd2",
+      "id": "abcade98-89f0-4685-8c38-227a03ed6f36",
       "data": {
         "title": {
           "@type": "string",
@@ -1173,7 +1103,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "8195a866-f951-4c8b-a1d6-bb9af84169a9",
+      "id": "bdf1e2ec-31f1-49db-bce5-60963dcebb80",
       "data": {
         "_scope": {
           "@type": "string",
@@ -1243,7 +1173,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "ff1f9b46-c9bf-4f7e-bcc2-19446520512c",
+      "id": "f1a0bdf7-f3fc-41d9-bf2c-98c56b43917b",
       "data": {
         "title": {
           "@type": "string",
@@ -1255,7 +1185,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - Content Filtering\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"content_filtering\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} %{WORD:filter_action}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"url='%{URI:url}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"server='%{IP:server}:%{BASE10NUM:server_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"client_ip='%{IP:client_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"category0='%{DATA:filter_reason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"category1='%{DATA:filter_subreason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  rename_field(\n    old_field : \"meraki_HOSTNAME\",\n    new_field : \"meraki_url_hostname\"\n  );\n  rename_field(\n    old_field : \"meraki_IPORHOST\",\n    new_field : \"meraki_url_iporhost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIHOST\",\n    new_field : \"meraki_url_urihost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATH\",\n    new_field : \"meraki_url_path\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATHPARAM\",\n    new_field : \"meraki_url_uripathparam\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPROTO\",\n    new_field : \"meraki_url_protocol\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - Content Filtering\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"content_filtering\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} %{WORD:filter_action}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"url='%{URI:url}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"server='%{IP:server}:%{BASE10NUM:server_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"client_ip='%{IP:client_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"category0='%{DATA:filter_reason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"category1='%{DATA:filter_subreason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  rename_field(\n    old_field : \"meraki_HOSTNAME\",\n    new_field : \"meraki_url_hostname\"\n  );\n  rename_field(\n    old_field : \"meraki_IPORHOST\",\n    new_field : \"meraki_url_iporhost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIHOST\",\n    new_field : \"meraki_url_urihost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATH\",\n    new_field : \"meraki_url_path\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATHPARAM\",\n    new_field : \"meraki_url_uripathparam\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPROTO\",\n    new_field : \"meraki_url_protocol\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
         }
       },
       "constraints": [
@@ -1271,7 +1201,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "1a3a70e3-e90b-47d2-ab9a-b8d8b149af4d",
+      "id": "d7347bdc-a215-4d91-8683-18454fabf1f3",
       "data": {
         "_scope": {
           "@type": "string",
@@ -1341,7 +1271,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "6e800da0-3cfb-4cf1-acfd-ceb4450ac196",
+      "id": "a74e293c-0b6f-4cc3-83a8-ec3173e91be7",
       "data": {
         "title": {
           "@type": "string",
@@ -1369,7 +1299,7 @@
         "name": "stream",
         "version": "1"
       },
-      "id": "551a9d32-d2e3-470e-97e1-e90995b05dc7",
+      "id": "09840169-d1b8-4f30-97b3-f989e98accd5",
       "data": {
         "alarm_callbacks": [],
         "outputs": [],
@@ -1436,7 +1366,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "6efc420f-d767-4a18-b82d-082cc5f417cd",
+      "id": "b7a501d3-f2c3-41a6-93d1-b7cc84aefadd",
       "data": {
         "title": {
           "@type": "string",
@@ -1464,7 +1394,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "5bb15c58-2a0f-425e-9105-224894a53b26",
+      "id": "959dc4b1-3370-401a-bd6f-f4d81ea8c58b",
       "data": {
         "title": {
           "@type": "string",
@@ -1492,7 +1422,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "05a3f7b9-c788-43a2-9712-36bf5259f127",
+      "id": "2f8d59db-1aeb-4eb0-8226-73dd8bc0ba9d",
       "data": {
         "title": {
           "@type": "string",
@@ -1504,7 +1434,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Firewall\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} firewall\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{WORD:protocol}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sport=%{INT:src_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dport=%{INT:dst_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"pattern: %{GREEDYDATA:pattern}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\nend"
+          "@value": "rule \"Meraki - Firewall\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} firewall\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{WORD:protocol}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sport=%{INT:src_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dport=%{INT:dst_port:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"pattern: %{GREEDYDATA:pattern}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\nend"
         }
       },
       "constraints": [
@@ -1520,7 +1450,7 @@
         "name": "event_definition",
         "version": "1"
       },
-      "id": "1fe17680-eeb3-406f-a281-b3ce05ca28c4",
+      "id": "d8bc40a0-de10-46b5-a098-5b1f32053a45",
       "data": {
         "field_spec": {},
         "config": {
@@ -1534,7 +1464,7 @@
           "cron_timezone": null,
           "use_cron_scheduling": false,
           "streams": [
-            "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+            "09840169-d1b8-4f30-97b3-f989e98accd5"
           ],
           "execute_every_ms": 300000,
           "event_limit": 100,
@@ -1572,7 +1502,7 @@
         },
         "notifications": [],
         "remediation_steps": null,
-        "matched_at": "2025-04-15T15:24:59.502Z",
+        "matched_at": "2025-04-15T20:59:59.502Z",
         "_scope": {
           "@type": "string",
           "@value": "DEFAULT"
@@ -1621,7 +1551,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "f76a4f70-7967-496f-8b0a-f8b05a8aecbf",
+      "id": "98d96929-a8fa-4c64-bf74-b07bf5c712a1",
       "data": {
         "_scope": {
           "@type": "string",
@@ -1691,7 +1621,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "0cdce1b2-86e4-42b8-8d4e-8b5906f44050",
+      "id": "a6b348ca-6ce4-41ae-9181-13badb2a80d7",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -1699,7 +1629,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -1715,7 +1645,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "7e65c1e7-58db-4728-b3ba-c87134a38bc7"
+          "@value": "613860f2-edd0-4848-85b8-9cb1cea38fcb"
         },
         "_scope": {
           "@type": "string",
@@ -1747,7 +1677,7 @@
         "name": "event_definition",
         "version": "1"
       },
-      "id": "d620d96a-118e-41fe-a8ee-97e253d94e46",
+      "id": "ea75f17c-c59d-4122-8eb0-a4d3306b7a5a",
       "data": {
         "field_spec": {},
         "config": {
@@ -1761,7 +1691,7 @@
           "cron_timezone": null,
           "use_cron_scheduling": false,
           "streams": [
-            "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+            "09840169-d1b8-4f30-97b3-f989e98accd5"
           ],
           "execute_every_ms": 300000,
           "event_limit": 1,
@@ -1826,66 +1756,10 @@
     {
       "v": "1",
       "type": {
-        "name": "lookup_table",
-        "version": "1"
-      },
-      "id": "bafc2c9d-c25d-478f-984f-9b65e0de25eb",
-      "data": {
-        "default_single_value_type": {
-          "@type": "string",
-          "@value": "NULL"
-        },
-        "cache_name": {
-          "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
-        },
-        "name": {
-          "@type": "string",
-          "@value": "Meraki Facility Mapping"
-        },
-        "default_multi_value_type": {
-          "@type": "string",
-          "@value": "NULL"
-        },
-        "default_multi_value": {
-          "@type": "string",
-          "@value": ""
-        },
-        "data_adapter_name": {
-          "@type": "string",
-          "@value": "2425f070-29b8-4528-a874-89e9d6e8c0ac"
-        },
-        "_scope": {
-          "@type": "string",
-          "@value": "DEFAULT"
-        },
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - Facility Mapping"
-        },
-        "default_single_value": {
-          "@type": "string",
-          "@value": ""
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Mapping Facility for meraki"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "50d2677f-e1eb-45bb-803d-5e8c98b1049b",
+      "id": "33b2d729-46b9-4ed1-96b6-f55368df4bb2",
       "data": {
         "title": {
           "@type": "string",
@@ -1897,7 +1771,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - FIPS Event\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"type=fips_event\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{WORD:event_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"reason='%{DATA:fips_reason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\nend"
+          "@value": "rule \"Meraki - Events - FIPS Event\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"type=fips_event\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{WORD:event_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"reason='%{DATA:fips_reason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\nend"
         }
       },
       "constraints": [
@@ -1913,7 +1787,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "62dbce72-796c-46ea-b00e-71e11a9ca69a",
+      "id": "cb723343-4d3a-480b-8c31-2f71568f4a32",
       "data": {
         "title": {
           "@type": "string",
@@ -1941,7 +1815,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "aabd37a1-da6d-4030-8741-68d35d64fa86",
+      "id": "5fcc9a4e-84ab-4edc-bae1-6d22a42479b1",
       "data": {
         "title": {
           "@type": "string",
@@ -1953,7 +1827,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - Port Status Change\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"port %{BASE10NUM:port} status changed \"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"port %{BASE10NUM:switch_port:INT} status changed from %{DATA:old_status} to %{GREEDYDATA:new_status}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"Port Status Change\",\n    prefix : \"meraki_\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - Port Status Change\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"port %{BASE10NUM:port} status changed \"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"port %{BASE10NUM:switch_port:INT} status changed from %{DATA:old_status} to %{GREEDYDATA:new_status}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"Port Status Change\",\n    prefix : \"meraki_\"\n  );\nend"
         }
       },
       "constraints": [
@@ -1969,7 +1843,7 @@
         "name": "pipeline",
         "version": "1"
       },
-      "id": "a83363c1-cadd-49df-9d4c-9beb829900d8",
+      "id": "42026fcb-fe33-4bbd-a0d7-9650d09b4817",
       "data": {
         "title": {
           "@type": "string",
@@ -1981,12 +1855,12 @@
         },
         "source": {
           "@type": "string",
-          "@value": "pipeline \"Cisco Meraki\"\nstage 0 match either\nrule \"Meraki - Extract Syslog PRI\"\nrule \"Meraki - Airmarshal Events\"\nrule \"Meraki - Events\"\nrule \"Meraki - Firewall\"\nrule \"Meraki - Flows\"\nrule \"Meraki - IP Flow\"\nrule \"Meraki - URLS\"\nrule \"Meraki - Events - Content Filtering\"\nrule \"Meraki - Events - DHCP No Offers\"\nrule \"Meraki - Events - FIPS Event\"\nrule \"Meraki - Events - Port Status Change\"\nrule \"Meraki - Events - Route Connection Change\"\nrule \"Meraki - Events - STP Role Change\"\nrule \"Meraki - Events - Two MACs Same IP\"\nrule \"Meraki - Events - APS Association\"\nrule \"Meraki - MAC Flap Detected\"\nrule \"Meraki - IDS Alerts\"\nrule \"Meraki - Security Event\"\nrule \"Meraki - Events - Blocked DHCP Server\"\nstage 2 match either\nrule \"Meraki - urls_url_ip6\"\nrule \"Meraki - protocol\"\nrule \"Meraki - frame_control\"\nrule \"Meraki - rssi_signal_strength \"\nrule \"Meraki - best_ap_rssi_signal_strength \"\nstage 1 match either\nrule \"Meraki - arp_src\"\nrule \"Meraki - band\"\nrule \"Meraki - dhcp_ip\"\nrule \"Meraki - dhcp_server\"\nrule \"Meraki - dns_server\"\nrule \"Meraki - dst_ip\"\nrule \"Meraki - epoch\"\nrule \"Meraki - ip_src\"\nrule \"Meraki - is_wpa\"\nrule \"Meraki - last_known_client_ip\"\nrule \"Meraki - radio\"\nrule \"Meraki - src_ip\"\nrule \"Meraki - syslog_priority\"\nrule \"Meraki - syslog_ver\"\nrule \"Meraki - translated_src_ip\"\nrule \"Meraki - UNIX Epoch Conversion with Timezone\"\nrule \"Meraki - last_known_client_ip6\"\nrule \"Meraki - client_ip\"\nrule \"Meraki - server\"\nrule \"Meraki - reason\"\nrule \"Meraki - best_ap\"\nrule \"Meraki - original_server_ip\"\nrule \"Meraki - server_ip\"\nrule \"Meraki - peer\"\nrule \"Meraki - icmp_type\"\nrule \"Meraki - icmp6_type\"\nrule \"Meraki - priority\"\nrule \"Meraki - UNIX Event Timestamp Conversion with Timezone\"\nend"
+          "@value": "pipeline \"Cisco Meraki\"\nstage 0 match either\nrule \"Meraki - Extract Syslog PRI\"\nrule \"Meraki - Airmarshal Events\"\nrule \"Meraki - Events\"\nrule \"Meraki - Firewall\"\nrule \"Meraki - Flows\"\nrule \"Meraki - IP Flow\"\nrule \"Meraki - URLS\"\nrule \"Meraki - Events - Content Filtering\"\nrule \"Meraki - Events - DHCP No Offers\"\nrule \"Meraki - Events - FIPS Event\"\nrule \"Meraki - Events - Port Status Change\"\nrule \"Meraki - Events - Route Connection Change\"\nrule \"Meraki - Events - STP Role Change\"\nrule \"Meraki - Events - Two MACs Same IP\"\nrule \"Meraki - Events - APS Association\"\nrule \"Meraki - MAC Flap Detected\"\nrule \"Meraki - IDS Alerts\"\nrule \"Meraki - Security Event\"\nrule \"Meraki - Events - Blocked DHCP Server\"\nstage 2 match either\nrule \"Meraki - urls_url_ip6\"\nrule \"Meraki - protocol\"\nrule \"Meraki - frame_control\"\nrule \"Meraki - rssi_signal_strength \"\nrule \"Meraki - best_ap_rssi_signal_strength \"\nstage 1 match either\nrule \"Meraki - arp_src\"\nrule \"Meraki - band\"\nrule \"Meraki - dhcp_ip\"\nrule \"Meraki - dhcp_server\"\nrule \"Meraki - dns_server\"\nrule \"Meraki - dst_ip\"\nrule \"Meraki - epoch\"\nrule \"Meraki - ip_src\"\nrule \"Meraki - is_wpa\"\nrule \"Meraki - last_known_client_ip\"\nrule \"Meraki - radio\"\nrule \"Meraki - src_ip\"\nrule \"Meraki - translated_src_ip\"\nrule \"Meraki - UNIX Epoch Conversion with Timezone\"\nrule \"Meraki - last_known_client_ip6\"\nrule \"Meraki - client_ip\"\nrule \"Meraki - server\"\nrule \"Meraki - reason\"\nrule \"Meraki - best_ap\"\nrule \"Meraki - original_server_ip\"\nrule \"Meraki - server_ip\"\nrule \"Meraki - peer\"\nrule \"Meraki - icmp_type\"\nrule \"Meraki - icmp6_type\"\nrule \"Meraki - priority\"\nrule \"Meraki - UNIX Event Timestamp Conversion with Timezone\"\nend"
         },
         "connected_streams": [
           {
             "@type": "string",
-            "@value": "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+            "@value": "09840169-d1b8-4f30-97b3-f989e98accd5"
           }
         ]
       },
@@ -2003,7 +1877,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "526f035e-b8b7-41f9-8bd2-08ba2e0375c4",
+      "id": "9170f21a-b895-4363-8d7b-53f1cd6649d5",
       "data": {
         "title": {
           "@type": "string",
@@ -2031,7 +1905,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "7ad0766b-1fc3-493c-972f-d39256ad790d",
+      "id": "097abacc-4e81-4e23-a7b8-3a531f001da1",
       "data": {
         "title": {
           "@type": "string",
@@ -2056,80 +1930,10 @@
     {
       "v": "1",
       "type": {
-        "name": "lookup_adapter",
-        "version": "1"
-      },
-      "id": "e307ebc8-394f-4969-80c4-a3d901de27a8",
-      "data": {
-        "_scope": {
-          "@type": "string",
-          "@value": "DEFAULT"
-        },
-        "name": {
-          "@type": "string",
-          "@value": "syslog-severity-mapping"
-        },
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - Syslog Severity Mapping"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Maps Meraki Syslog Severity to its actuals"
-        },
-        "configuration": {
-          "value_column": {
-            "@type": "string",
-            "@value": "value"
-          },
-          "path": {
-            "@type": "string",
-            "@value": "/etc/graylog/files/syslog_severity_mapping.csv"
-          },
-          "cidr_lookup": {
-            "@type": "boolean",
-            "@value": false
-          },
-          "separator": {
-            "@type": "string",
-            "@value": ","
-          },
-          "quotechar": {
-            "@type": "string",
-            "@value": "\""
-          },
-          "key_column": {
-            "@type": "string",
-            "@value": "key"
-          },
-          "case_insensitive_lookup": {
-            "@type": "boolean",
-            "@value": false
-          },
-          "type": {
-            "@type": "string",
-            "@value": "csvfile"
-          },
-          "check_interval": {
-            "@type": "long",
-            "@value": 60
-          }
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "f8d1eb23-7f36-4119-95a6-070623f6b6c4",
+      "id": "865f9b07-bf3a-4f45-9779-f925cf433295",
       "data": {
         "title": {
           "@type": "string",
@@ -2157,7 +1961,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "988544b1-55df-4c92-8aa1-ffe445c494a7",
+      "id": "9291a048-91cc-4878-a9bc-2080976898f3",
       "data": {
         "title": {
           "@type": "string",
@@ -2185,7 +1989,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "236e22aa-0b7c-44a8-9be0-2e254f4a9ea5",
+      "id": "5face7a0-ca9f-4e4b-8502-081cabe32726",
       "data": {
         "_scope": {
           "@type": "string",
@@ -2255,7 +2059,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "e38351da-1117-4ce3-8620-7fd88d57adc4",
+      "id": "add1ab38-b2cf-4ff7-bb53-43974754637e",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -2263,7 +2067,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -2279,7 +2083,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "1a3a70e3-e90b-47d2-ab9a-b8d8b149af4d"
+          "@value": "d7347bdc-a215-4d91-8683-18454fabf1f3"
         },
         "_scope": {
           "@type": "string",
@@ -2311,7 +2115,7 @@
         "name": "input",
         "version": "1"
       },
-      "id": "c1b051e9-75ea-4135-8f55-bbd92b9af08e",
+      "id": "85a18737-3948-4eb2-919e-69bdcd481435",
       "data": {
         "title": {
           "@type": "string",
@@ -2363,7 +2167,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "7e65c1e7-58db-4728-b3ba-c87134a38bc7",
+      "id": "613860f2-edd0-4848-85b8-9cb1cea38fcb",
       "data": {
         "_scope": {
           "@type": "string",
@@ -2433,7 +2237,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "59cdd36e-ee7a-48e6-ac35-e90fdc0e3cdb",
+      "id": "4dfe3e07-858f-43b4-a054-d5c4a8fe68ef",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -2441,7 +2245,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -2457,7 +2261,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "4d3c9380-024d-47a3-921f-599c5e604461"
+          "@value": "dd649b03-bb6c-4f01-b3aa-11aaf214ac71"
         },
         "_scope": {
           "@type": "string",
@@ -2489,7 +2293,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "c25ea1f3-1458-4511-821f-8cbb00dcfa47",
+      "id": "3a86f91b-ac03-40eb-aabf-463684645ce1",
       "data": {
         "title": {
           "@type": "string",
@@ -2501,7 +2305,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - Blocked DHCP Server\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} Blocked DHCP server \"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} Blocked DHCP server response from %{COMMONMAC:blocked_dhcp_mac} on VLAN %{BASE10NUM:vlan:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"Blocked DHCP Server\",\n    prefix : \"meraki_\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - Blocked DHCP Server\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} Blocked DHCP server \"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} Blocked DHCP server response from %{COMMONMAC:blocked_dhcp_mac} on VLAN %{BASE10NUM:vlan:INT}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"Blocked DHCP Server\",\n    prefix : \"meraki_\"\n  );\nend"
         }
       },
       "constraints": [
@@ -2517,7 +2321,7 @@
         "name": "dashboard",
         "version": "2"
       },
-      "id": "2e3c29fc-f841-4811-b20a-9a38c1598d33",
+      "id": "1bf21e91-9256-47b2-b446-23001a4a6549",
       "data": {
         "summary": {
           "@type": "string",
@@ -2549,7 +2353,130 @@
                   },
                   "column_limit": null,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
+                  ],
+                  "row_limit": null,
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count(meraki_event_type)",
+                      "field": "meraki_event_type"
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "fields": [
+                        "meraki_event_type"
+                      ],
+                      "limit": 15,
+                      "skip_empty_values": true
+                    }
+                  ],
+                  "type": "pivot",
+                  "stream_categories": [],
+                  "id": "a5651760-2c57-4993-9e7d-934cab147297",
+                  "filters": [],
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "from": 86400,
+                    "type": "relative"
+                  },
+                  "column_limit": null,
+                  "streams": [
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
+                  ],
+                  "row_limit": null,
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count(meraki_syslog_severity)",
+                      "field": "meraki_syslog_severity"
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "fields": [
+                        "meraki_syslog_severity"
+                      ],
+                      "limit": 15,
+                      "skip_empty_values": true
+                    }
+                  ],
+                  "type": "pivot",
+                  "stream_categories": [],
+                  "id": "3efbec63-2c60-46e4-9a77-0d4be57e4a0c",
+                  "filters": [],
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "from": 86400,
+                    "type": "relative"
+                  },
+                  "column_limit": null,
+                  "streams": [
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
+                  ],
+                  "row_limit": null,
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count(meraki_airmarshal_event_type)",
+                      "field": "meraki_airmarshal_event_type"
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "fields": [
+                        "meraki_airmarshal_event_type"
+                      ],
+                      "limit": 15,
+                      "skip_empty_values": true
+                    }
+                  ],
+                  "type": "pivot",
+                  "stream_categories": [],
+                  "id": "f54aeec0-204d-4044-8ac1-24a7a2bae0e7",
+                  "filters": [],
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "from": 86400,
+                    "type": "relative"
+                  },
+                  "column_limit": null,
+                  "streams": [
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "row_limit": null,
                   "series": [
@@ -2590,14 +2517,14 @@
                   },
                   "column_limit": null,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "row_limit": null,
                   "series": [
                     {
                       "type": "count",
-                      "id": "count(meraki_syslog_severity)",
-                      "field": "meraki_syslog_severity"
+                      "id": "count(meraki_category)",
+                      "field": "meraki_category"
                     }
                   ],
                   "filter": null,
@@ -2606,15 +2533,15 @@
                     {
                       "type": "values",
                       "fields": [
-                        "meraki_syslog_severity"
+                        "meraki_category"
                       ],
                       "limit": 15,
-                      "skip_empty_values": true
+                      "skip_empty_values": false
                     }
                   ],
                   "type": "pivot",
                   "stream_categories": [],
-                  "id": "3efbec63-2c60-46e4-9a77-0d4be57e4a0c",
+                  "id": "00856c7e-5473-4bb8-983a-c390b1870568",
                   "filters": [],
                   "column_groups": [],
                   "sort": []
@@ -2631,7 +2558,7 @@
                   },
                   "column_limit": null,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "row_limit": null,
                   "series": [
@@ -2680,129 +2607,6 @@
                   "filters": [],
                   "column_groups": [],
                   "sort": []
-                },
-                {
-                  "query": {
-                    "type": "elasticsearch",
-                    "query_string": ""
-                  },
-                  "name": "chart",
-                  "timerange": {
-                    "from": 86400,
-                    "type": "relative"
-                  },
-                  "column_limit": null,
-                  "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                  ],
-                  "row_limit": null,
-                  "series": [
-                    {
-                      "type": "count",
-                      "id": "count(meraki_category)",
-                      "field": "meraki_category"
-                    }
-                  ],
-                  "filter": null,
-                  "rollup": true,
-                  "row_groups": [
-                    {
-                      "type": "values",
-                      "fields": [
-                        "meraki_category"
-                      ],
-                      "limit": 15,
-                      "skip_empty_values": false
-                    }
-                  ],
-                  "type": "pivot",
-                  "stream_categories": [],
-                  "id": "00856c7e-5473-4bb8-983a-c390b1870568",
-                  "filters": [],
-                  "column_groups": [],
-                  "sort": []
-                },
-                {
-                  "query": {
-                    "type": "elasticsearch",
-                    "query_string": ""
-                  },
-                  "name": "chart",
-                  "timerange": {
-                    "from": 86400,
-                    "type": "relative"
-                  },
-                  "column_limit": null,
-                  "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                  ],
-                  "row_limit": null,
-                  "series": [
-                    {
-                      "type": "count",
-                      "id": "count(meraki_event_type)",
-                      "field": "meraki_event_type"
-                    }
-                  ],
-                  "filter": null,
-                  "rollup": true,
-                  "row_groups": [
-                    {
-                      "type": "values",
-                      "fields": [
-                        "meraki_event_type"
-                      ],
-                      "limit": 15,
-                      "skip_empty_values": true
-                    }
-                  ],
-                  "type": "pivot",
-                  "stream_categories": [],
-                  "id": "a5651760-2c57-4993-9e7d-934cab147297",
-                  "filters": [],
-                  "column_groups": [],
-                  "sort": []
-                },
-                {
-                  "query": {
-                    "type": "elasticsearch",
-                    "query_string": ""
-                  },
-                  "name": "chart",
-                  "timerange": {
-                    "from": 86400,
-                    "type": "relative"
-                  },
-                  "column_limit": null,
-                  "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                  ],
-                  "row_limit": null,
-                  "series": [
-                    {
-                      "type": "count",
-                      "id": "count(meraki_airmarshal_event_type)",
-                      "field": "meraki_airmarshal_event_type"
-                    }
-                  ],
-                  "filter": null,
-                  "rollup": true,
-                  "row_groups": [
-                    {
-                      "type": "values",
-                      "fields": [
-                        "meraki_airmarshal_event_type"
-                      ],
-                      "limit": 15,
-                      "skip_empty_values": true
-                    }
-                  ],
-                  "type": "pivot",
-                  "stream_categories": [],
-                  "id": "f54aeec0-204d-4044-8ac1-24a7a2bae0e7",
-                  "filters": [],
-                  "column_groups": [],
-                  "sort": []
                 }
               ]
             },
@@ -2830,7 +2634,7 @@
                   },
                   "column_limit": null,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "row_limit": null,
                   "series": [
@@ -2884,7 +2688,7 @@
                   },
                   "offset": 0,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "filter": null,
                   "decorators": [],
@@ -2920,7 +2724,7 @@
                   },
                   "column_limit": null,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "row_limit": null,
                   "series": [
@@ -2967,7 +2771,7 @@
                   },
                   "offset": 0,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "filter": null,
                   "decorators": [],
@@ -3003,7 +2807,7 @@
                   },
                   "column_limit": null,
                   "streams": [
-                    "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                    "09840169-d1b8-4f30-97b3-f989e98accd5"
                   ],
                   "row_limit": null,
                   "series": [
@@ -3074,6 +2878,106 @@
             "widgets": [
               {
                 "config": {
+                  "visualization": "pie",
+                  "units": {},
+                  "column_limit": null,
+                  "event_annotation": false,
+                  "row_limit": 15,
+                  "row_pivots": [
+                    {
+                      "fields": [
+                        "meraki_action_taken"
+                      ],
+                      "type": "values",
+                      "config": {
+                        "limit": 15,
+                        "skip_empty_values": true
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count(meraki_action_taken)"
+                    }
+                  ],
+                  "rollup": false,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "timerange": {
+                  "from": 86400,
+                  "type": "relative"
+                },
+                "streams": [
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
+                ],
+                "filter": null,
+                "type": "aggregation",
+                "stream_categories": [],
+                "id": "32ba85ea-086b-4f23-a22d-b0cfa80db88b",
+                "filters": []
+              },
+              {
+                "config": {
+                  "visualization": "pie",
+                  "units": {},
+                  "column_limit": null,
+                  "event_annotation": false,
+                  "row_limit": 15,
+                  "row_pivots": [
+                    {
+                      "fields": [
+                        "meraki_airmarshal_event_type"
+                      ],
+                      "type": "values",
+                      "config": {
+                        "limit": 15,
+                        "skip_empty_values": true
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count(meraki_airmarshal_event_type)"
+                    }
+                  ],
+                  "rollup": false,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "timerange": {
+                  "from": 86400,
+                  "type": "relative"
+                },
+                "streams": [
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
+                ],
+                "filter": null,
+                "type": "aggregation",
+                "stream_categories": [],
+                "id": "4b86c586-6824-4308-8fc3-fa932dedc433",
+                "filters": []
+              },
+              {
+                "config": {
                   "visualization": "line",
                   "units": {},
                   "column_limit": null,
@@ -3137,162 +3041,12 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "aggregation",
                 "stream_categories": [],
                 "id": "4e86be0a-5608-436b-b5b7-efe2e31eccc1",
-                "filters": []
-              },
-              {
-                "config": {
-                  "visualization": "pie",
-                  "units": {},
-                  "column_limit": null,
-                  "event_annotation": false,
-                  "row_limit": 15,
-                  "row_pivots": [
-                    {
-                      "fields": [
-                        "meraki_action_taken"
-                      ],
-                      "type": "values",
-                      "config": {
-                        "limit": 15,
-                        "skip_empty_values": true
-                      }
-                    }
-                  ],
-                  "series": [
-                    {
-                      "config": {
-                        "name": null
-                      },
-                      "function": "count(meraki_action_taken)"
-                    }
-                  ],
-                  "rollup": false,
-                  "column_pivots": [],
-                  "visualization_config": null,
-                  "formatting_settings": null,
-                  "sort": []
-                },
-                "query": {
-                  "type": "elasticsearch",
-                  "query_string": ""
-                },
-                "timerange": {
-                  "from": 86400,
-                  "type": "relative"
-                },
-                "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                ],
-                "filter": null,
-                "type": "aggregation",
-                "stream_categories": [],
-                "id": "32ba85ea-086b-4f23-a22d-b0cfa80db88b",
-                "filters": []
-              },
-              {
-                "config": {
-                  "visualization": "pie",
-                  "units": {},
-                  "column_limit": null,
-                  "event_annotation": false,
-                  "row_limit": 15,
-                  "row_pivots": [
-                    {
-                      "fields": [
-                        "meraki_event_type"
-                      ],
-                      "type": "values",
-                      "config": {
-                        "limit": 15,
-                        "skip_empty_values": true
-                      }
-                    }
-                  ],
-                  "series": [
-                    {
-                      "config": {
-                        "name": null
-                      },
-                      "function": "count(meraki_event_type)"
-                    }
-                  ],
-                  "rollup": false,
-                  "column_pivots": [],
-                  "visualization_config": null,
-                  "formatting_settings": null,
-                  "sort": []
-                },
-                "query": {
-                  "type": "elasticsearch",
-                  "query_string": ""
-                },
-                "timerange": {
-                  "from": 86400,
-                  "type": "relative"
-                },
-                "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                ],
-                "filter": null,
-                "type": "aggregation",
-                "stream_categories": [],
-                "id": "14bba717-5b3b-40f8-a191-ee744a4b78e4",
-                "filters": []
-              },
-              {
-                "config": {
-                  "visualization": "pie",
-                  "units": {},
-                  "column_limit": null,
-                  "event_annotation": false,
-                  "row_limit": 15,
-                  "row_pivots": [
-                    {
-                      "fields": [
-                        "meraki_airmarshal_event_type"
-                      ],
-                      "type": "values",
-                      "config": {
-                        "limit": 15,
-                        "skip_empty_values": true
-                      }
-                    }
-                  ],
-                  "series": [
-                    {
-                      "config": {
-                        "name": null
-                      },
-                      "function": "count(meraki_airmarshal_event_type)"
-                    }
-                  ],
-                  "rollup": false,
-                  "column_pivots": [],
-                  "visualization_config": null,
-                  "formatting_settings": null,
-                  "sort": []
-                },
-                "query": {
-                  "type": "elasticsearch",
-                  "query_string": ""
-                },
-                "timerange": {
-                  "from": 86400,
-                  "type": "relative"
-                },
-                "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                ],
-                "filter": null,
-                "type": "aggregation",
-                "stream_categories": [],
-                "id": "4b86c586-6824-4308-8fc3-fa932dedc433",
                 "filters": []
               },
               {
@@ -3336,7 +3090,7 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "aggregation",
@@ -3386,12 +3140,62 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "aggregation",
                 "stream_categories": [],
                 "id": "b242c0a2-cca0-4564-a53d-9ba2e4f8a8b0",
+                "filters": []
+              },
+              {
+                "config": {
+                  "visualization": "pie",
+                  "units": {},
+                  "column_limit": null,
+                  "event_annotation": false,
+                  "row_limit": 15,
+                  "row_pivots": [
+                    {
+                      "fields": [
+                        "meraki_event_type"
+                      ],
+                      "type": "values",
+                      "config": {
+                        "limit": 15,
+                        "skip_empty_values": true
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count(meraki_event_type)"
+                    }
+                  ],
+                  "rollup": false,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "timerange": {
+                  "from": 86400,
+                  "type": "relative"
+                },
+                "streams": [
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
+                ],
+                "filter": null,
+                "type": "aggregation",
+                "stream_categories": [],
+                "id": "14bba717-5b3b-40f8-a191-ee744a4b78e4",
                 "filters": []
               }
             ],
@@ -3533,7 +3337,7 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "aggregation",
@@ -3568,7 +3372,7 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "messages",
@@ -3621,6 +3425,41 @@
             "widgets": [
               {
                 "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "units": {},
+                  "show_message_row": true,
+                  "show_summary": true,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "meraki_event_type:\"martian_vlan\""
+                },
+                "timerange": {
+                  "from": 86400,
+                  "type": "relative"
+                },
+                "streams": [
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
+                ],
+                "filter": null,
+                "type": "messages",
+                "stream_categories": [],
+                "id": "c62e0dec-744b-4fb7-8c4b-90454542836a",
+                "filters": []
+              },
+              {
+                "config": {
                   "visualization": "table",
                   "units": {},
                   "column_limit": null,
@@ -3669,47 +3508,12 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "aggregation",
                 "stream_categories": [],
                 "id": "c10eb3e1-64a3-48d8-8916-625ec2f31fd8",
-                "filters": []
-              },
-              {
-                "config": {
-                  "fields": [
-                    "timestamp",
-                    "source"
-                  ],
-                  "units": {},
-                  "show_message_row": true,
-                  "show_summary": true,
-                  "decorators": [],
-                  "sort": [
-                    {
-                      "type": "pivot",
-                      "field": "timestamp",
-                      "direction": "Descending"
-                    }
-                  ]
-                },
-                "query": {
-                  "type": "elasticsearch",
-                  "query_string": "meraki_event_type:\"martian_vlan\""
-                },
-                "timerange": {
-                  "from": 86400,
-                  "type": "relative"
-                },
-                "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
-                ],
-                "filter": null,
-                "type": "messages",
-                "stream_categories": [],
-                "id": "c62e0dec-744b-4fb7-8c4b-90454542836a",
                 "filters": []
               }
             ],
@@ -3805,7 +3609,7 @@
                   "type": "relative"
                 },
                 "streams": [
-                  "551a9d32-d2e3-470e-97e1-e90995b05dc7"
+                  "09840169-d1b8-4f30-97b3-f989e98accd5"
                 ],
                 "filter": null,
                 "type": "aggregation",
@@ -3860,7 +3664,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "7b556579-4008-4335-bfc4-99f0c3ff0e14",
+      "id": "cf9afab1-bf13-4efc-af85-15dc0dc63cce",
       "data": {
         "title": {
           "@type": "string",
@@ -3872,7 +3676,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - APS Association\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"type=aps_association\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{WORD:event_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"load='%{BASE10NUM:load:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"best_ap='%{IP:best_ap}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"best_ap_load='%{BASE10NUM:best_ap_load:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"best_ap_rssi='%{BASE10NUM:best_ap_rssi:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - APS Association\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"type=aps_association\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{WORD:event_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"load='%{BASE10NUM:load:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"best_ap='%{IP:best_ap}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"best_ap_load='%{BASE10NUM:best_ap_load:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"best_ap_rssi='%{BASE10NUM:best_ap_rssi:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\nend"
         }
       },
       "constraints": [
@@ -3888,7 +3692,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "35deff7d-4b91-4b30-8a4a-568b35a9fc1b",
+      "id": "2470f5d1-5ae7-4dd5-a95e-bff930bd63b4",
       "data": {
         "title": {
           "@type": "string",
@@ -3916,7 +3720,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "5e17c919-e671-4042-aebf-2c065a3dc054",
+      "id": "6b350a12-95a9-40b7-a6e8-79bcc8c96232",
       "data": {
         "title": {
           "@type": "string",
@@ -3944,7 +3748,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "94d7ee62-6f28-47f0-95f7-4fd47345d370",
+      "id": "f79d29b8-5973-4ffe-a389-c88285486c29",
       "data": {
         "title": {
           "@type": "string",
@@ -3956,7 +3760,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - URLS\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} urls\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}:%{INT:src_port}|src=\\\\[%{IPV6:src_ip}\\\\]:%{INT:src_port}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}:%{INT:dst_port}|dst=\\\\[%{IPV6:dst_ip}\\\\]:%{INT:dst_port}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"request: %{WORD:request} %{URI:url}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"request: %{WORD:http_method} %{URIPROTO:url_protocol}://\\\\[%{IPV6:url_ip6}\\\\]:(%{INT:url_port})%{URIPATH:url_path}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"agent='%{DATA:agent}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  rename_field(\n    old_field : \"meraki_HOSTNAME\",\n    new_field : \"meraki_url_hostname\"\n  );\n  rename_field(\n    old_field : \"meraki_IPORHOST\",\n    new_field : \"meraki_url_iporhost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIHOST\",\n    new_field : \"meraki_url_urihost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATH\",\n    new_field : \"meraki_url_path\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATHPARAM\",\n    new_field : \"meraki_url_uripathparam\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPROTO\",\n    new_field : \"meraki_url_protocol\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPARAM\",\n    new_field : \"meraki_url_uriparam\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\nend"
+          "@value": "rule \"Meraki - URLS\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} urls\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IP:src_ip}:%{INT:src_port}|src=\\\\[%{IPV6:src_ip}\\\\]:%{INT:src_port}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IP:dst_ip}:%{INT:dst_port}|dst=\\\\[%{IPV6:dst_ip}\\\\]:%{INT:dst_port}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"request: %{WORD:request} %{URI:url}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"request: %{WORD:http_method} %{URIPROTO:url_protocol}://\\\\[%{IPV6:url_ip6}\\\\]:(%{INT:url_port})%{URIPATH:url_path}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"agent='%{DATA:agent}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  rename_field(\n    old_field : \"meraki_HOSTNAME\",\n    new_field : \"meraki_url_hostname\"\n  );\n  rename_field(\n    old_field : \"meraki_IPORHOST\",\n    new_field : \"meraki_url_iporhost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIHOST\",\n    new_field : \"meraki_url_urihost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATH\",\n    new_field : \"meraki_url_path\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATHPARAM\",\n    new_field : \"meraki_url_uripathparam\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPROTO\",\n    new_field : \"meraki_url_protocol\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPARAM\",\n    new_field : \"meraki_url_uriparam\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\nend"
         }
       },
       "constraints": [
@@ -3972,7 +3776,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "eb6099b9-2540-48db-82f6-887d1c397161",
+      "id": "fb677a6c-92ea-4950-a279-249a574a1cae",
       "data": {
         "title": {
           "@type": "string",
@@ -3984,7 +3788,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Extract Syslog PRI\"\nwhen\n    has_field(\"message\")\nthen\n    let pri_value = regex(\"<(\\\\d+)>\\\\d\", to_string($message.message));\n    \n    // Convert PRI to Facility and Severity\n    let pri = to_long(pri_value[\"0\"]);\n    let facility = pri / 8;\n    let severity = pri % 8;\n    \n    let severity_text = lookup_value(\"Meraki Syslog Severity Mapping\", to_string(severity));\n    let facility_text = lookup_value(\"Meraki Facility Mapping\", to_string(facility));\n    \n    set_field(\"meraki_syslog_facility\", facility_text);\n    set_field(\"meraki_syslog_severity\", severity_text);\nend\n"
+          "@value": "rule \"Meraki - Extract Syslog PRI\"\nwhen\n    has_field(\"message\")\nthen\n  set_fields(\n    grok(\n      pattern: \"<%{NONNEGINT:meraki_syslog_severity:int}>\",\n      value: to_string($message.message),\n      only_named_captures: true\n    )\n  ); \n\n  // Get numeric parts\n  let priority = expand_syslog_priority(to_long($message.meraki_syslog_severity));\n  set_field(\"meraki_facility\", priority.facility);\n  set_field(\"meraki_severity\", priority.level);\n\n  // Get string descriptions\n  let expanded = expand_syslog_priority_as_string(to_long($message.meraki_syslog_severity));\n  set_field(\"meraki_facility_description\", expanded.facility);\n  set_field(\"meraki_severity_description\", expanded.level);\nend\n"
         }
       },
       "constraints": [
@@ -4000,7 +3804,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "097bdf39-8284-4868-9c2c-2d95d4997344",
+      "id": "58ae3342-bc39-4cfb-bdde-aaccc9983009",
       "data": {
         "title": {
           "@type": "string",
@@ -4012,35 +3816,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - MAC Flap Detected\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"mac_flap_detected\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"MAC Flap Detected\",\n    prefix : \"meraki_\"\n  );\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac='%{COMMONMAC:mac_address}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vlan='%{BASE10NUM:vlan}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"port='%{DATA:port}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\nend"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
-        "name": "pipeline_rule",
-        "version": "1"
-      },
-      "id": "d432ef3a-dadd-455d-b220-9a3eeaefffb0",
-      "data": {
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - syslog_priority"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Converts specified Field to correct type."
-        },
-        "source": {
-          "@type": "string",
-          "@value": "rule \"Meraki - syslog_priority\"\nwhen\n  has_field(\n    field : \"meraki_syslog_priority\"\n  )\nthen\n  route_to_stream(\n    name : \"Field Type Conversion\",\n    remove_from_default : true\n  );\n  let output_1 = get_field(\n    field : \"meraki_syslog_priority\"\n  );\n  let output_2 = to_long(\n    value : output_1\n  );\n  set_field(\n    field : \"meraki_syslog_priority\",\n    value : output_2\n  );\n  remove_from_stream(\n    name : \"Field Type Conversion\"\n  );\n  route_to_stream(\n    name : \"Cisco Meraki\",\n    remove_from_default : true\n  );\nend"
+          "@value": "rule \"Meraki - MAC Flap Detected\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"mac_flap_detected\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"MAC Flap Detected\",\n    prefix : \"meraki_\"\n  );\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac='%{COMMONMAC:mac_address}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vlan='%{BASE10NUM:vlan}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"port='%{DATA:port}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\nend"
         }
       },
       "constraints": [
@@ -4056,7 +3832,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "3c15625d-a773-46eb-b87c-1f550489a876",
+      "id": "9ada5440-59ad-4d5a-9925-09c3ac8abad7",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -4064,7 +3840,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -4080,7 +3856,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "b9e45979-8a8f-4519-89ee-db643980eb32"
+          "@value": "75435cc3-6dcd-469c-8477-bcd9b08d10bf"
         },
         "_scope": {
           "@type": "string",
@@ -4112,7 +3888,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "ac63c85b-ac5d-49a0-8a61-0439ed7865c8",
+      "id": "7ec592e6-2730-4f6e-b21b-7ecfd914bbd9",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -4120,7 +3896,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -4136,7 +3912,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "236e22aa-0b7c-44a8-9be0-2e254f4a9ea5"
+          "@value": "5face7a0-ca9f-4e4b-8502-081cabe32726"
         },
         "_scope": {
           "@type": "string",
@@ -4168,7 +3944,7 @@
         "name": "lookup_adapter",
         "version": "1"
       },
-      "id": "b9e45979-8a8f-4519-89ee-db643980eb32",
+      "id": "75435cc3-6dcd-469c-8477-bcd9b08d10bf",
       "data": {
         "_scope": {
           "@type": "string",
@@ -4238,7 +4014,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "f0867202-b7cc-4b5a-a3c4-0005d8fa2d29",
+      "id": "baff264b-5786-4679-a200-7ca24b64f9be",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -4246,7 +4022,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -4262,7 +4038,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "8195a866-f951-4c8b-a1d6-bb9af84169a9"
+          "@value": "bdf1e2ec-31f1-49db-bce5-60963dcebb80"
         },
         "_scope": {
           "@type": "string",
@@ -4291,66 +4067,10 @@
     {
       "v": "1",
       "type": {
-        "name": "lookup_table",
-        "version": "1"
-      },
-      "id": "914b479b-5b61-4401-baa4-9485b03255a9",
-      "data": {
-        "default_single_value_type": {
-          "@type": "string",
-          "@value": "NULL"
-        },
-        "cache_name": {
-          "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
-        },
-        "name": {
-          "@type": "string",
-          "@value": "Meraki Syslog Severity Mapping"
-        },
-        "default_multi_value_type": {
-          "@type": "string",
-          "@value": "NULL"
-        },
-        "default_multi_value": {
-          "@type": "string",
-          "@value": ""
-        },
-        "data_adapter_name": {
-          "@type": "string",
-          "@value": "e307ebc8-394f-4969-80c4-a3d901de27a8"
-        },
-        "_scope": {
-          "@type": "string",
-          "@value": "DEFAULT"
-        },
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - Syslog Severity Mapping"
-        },
-        "default_single_value": {
-          "@type": "string",
-          "@value": ""
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Mapping Syslog Severity for meraki"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "32f5122c-5c0d-449a-8592-d443340f2058",
+      "id": "5def192f-53c7-4ace-967e-671f042dbe12",
       "data": {
         "title": {
           "@type": "string",
@@ -4378,7 +4098,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "bd930eb1-1e1f-4af9-92ee-cdd1079bae73",
+      "id": "2d4d962e-bdae-441e-9cd9-5ccae299e500",
       "data": {
         "title": {
           "@type": "string",
@@ -4390,7 +4110,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoc} %{DATA:host} events\"\n).matches == true\n  AND\n  ! contains(\n  value: to_string($message.\"message\"),\n  search: \"fips_event\"\n)\n  AND\n  ! contains(\n  value: to_string($message.\"message\"),\n  search: \"aps_association\",\n  ignore_case: true\n)\n  AND\n  ! contains(\n  value: to_string($message.\"message\"),\n  search: \"Blocked DHCP server\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{WORD:event_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type='%{WORD:action_taken}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"radio='%{BASE10NUM:radio:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vap='%{BASE10NUM:vap:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"client_mac='%{COMMONMAC:client_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"band='%{BASE10NUM:band:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"channel='%{BASE10NUM:channel:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"da_vendor='%{WORD:da_vendor}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"duration='%{BASE10NUM:duration:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"auth_neg_dur='%{BASE10NUM:auth_neg_dur:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"last_auth_ago='%{BASE10NUM:last_auth_ago:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"is_wpa='%{BASE10NUM:is_wpa:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"full_conn='%{BASE10NUM:full_conn_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ip_resp='%{BASE10NUM:ip_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ip_src='%{IP:src_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"arp_resp='%{BASE10NUM:arp_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"arp_src='%{IP:arp_src}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dns_server='%{IP:dns_server}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dns_req_rtt='%{BASE10NUM:dns_req_rtt_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dns_resp='%{BASE10NUM:dns_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"aid='%{BASE10NUM:aid:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"group='%{DATA:group}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"attr='%{DATA:attr}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"instigator='%{DATA:instigator}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_lease_completed='%{BASE10NUM:dhcp_lease_completed:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_ip='%{IP:dhcp_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_server='%{IP:dhcp_server}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_server_mac='%{COMMONMAC:dhcp_server_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_resp='%{BASE10NUM:dhcp_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"last_known_client_ip='%{IPV4:last_known_client_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"rssi='%{BASE10NUM:rssi:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"http_resp='%{BASE10NUM:http_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ssid='%{DATA:ssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"bssid='%{DATA:bssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src='%{IP:src_ip}'|src='%{COMMONMAC:src_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst='%{DATA:dst_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"wired_mac='%{DATA:wired_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vlan_id='%{DATA:vlan_id}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_type='%{BASE10NUM:fc_type:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_subtype='%{BASE10NUM:fc_subtype:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"reason='%{DATA:reason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"last_known_client_ip6='%{IPV6:last_known_client_ip6}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"da_reason='%{BASE10NUM:da_reason:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"da_subreason='%{BASE10NUM:da_subreason:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)vlan='%{BASE10NUM:vlan:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"MAC='%{COMMONMAC:mac_address}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"port='%{DATA:port}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)client='%{IP:client_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)details='%{DATA:details}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"summary='%{DATA:summary}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vpn_type='%{DATA:vpn_type}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"connectivity='%{DATA:connectivity}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"load='%{BASE10NUM:load:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"original_server_ip='%{IP:original_server_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"original_server_mac='%{COMMONMAC:original_server_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"server_ip='%{IP:server_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"server_mac='%{COMMONMAC:server_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\nend"
+          "@value": "rule \"Meraki - Events\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoc} %{DATA:host} events\"\n).matches == true\n  AND\n  ! contains(\n  value: to_string($message.\"message\"),\n  search: \"fips_event\"\n)\n  AND\n  ! contains(\n  value: to_string($message.\"message\"),\n  search: \"aps_association\",\n  ignore_case: true\n)\n  AND\n  ! contains(\n  value: to_string($message.\"message\"),\n  search: \"Blocked DHCP server\"\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type=%{WORD:event_type}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"type='%{WORD:action_taken}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"radio='%{BASE10NUM:radio:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vap='%{BASE10NUM:vap:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"client_mac='%{COMMONMAC:client_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"band='%{BASE10NUM:band:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"channel='%{BASE10NUM:channel:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"da_vendor='%{WORD:da_vendor}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"duration='%{BASE10NUM:duration:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"auth_neg_dur='%{BASE10NUM:auth_neg_dur:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"last_auth_ago='%{BASE10NUM:last_auth_ago:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"is_wpa='%{BASE10NUM:is_wpa:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"full_conn='%{BASE10NUM:full_conn_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ip_resp='%{BASE10NUM:ip_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ip_src='%{IP:src_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"arp_resp='%{BASE10NUM:arp_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"arp_src='%{IP:arp_src}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dns_server='%{IP:dns_server}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dns_req_rtt='%{BASE10NUM:dns_req_rtt_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dns_resp='%{BASE10NUM:dns_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"aid='%{BASE10NUM:aid:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"group='%{DATA:group}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"attr='%{DATA:attr}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"instigator='%{DATA:instigator}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_lease_completed='%{BASE10NUM:dhcp_lease_completed:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_ip='%{IP:dhcp_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_server='%{IP:dhcp_server}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_server_mac='%{COMMONMAC:dhcp_server_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhcp_resp='%{BASE10NUM:dhcp_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"last_known_client_ip='%{IPV4:last_known_client_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"rssi='%{BASE10NUM:rssi:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"http_resp='%{BASE10NUM:http_resp_time:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"ssid='%{DATA:ssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"bssid='%{DATA:bssid}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src='%{IP:src_ip}'|src='%{COMMONMAC:src_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst='%{DATA:dst_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"wired_mac='%{DATA:wired_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vlan_id='%{DATA:vlan_id}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_type='%{BASE10NUM:fc_type:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"fc_subtype='%{BASE10NUM:fc_subtype:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"reason='%{DATA:reason}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"last_known_client_ip6='%{IPV6:last_known_client_ip6}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"da_reason='%{BASE10NUM:da_reason:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"da_subreason='%{BASE10NUM:da_subreason:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)vlan='%{BASE10NUM:vlan:INT}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"MAC='%{COMMONMAC:mac_address}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"port='%{DATA:port}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)client='%{IP:client_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)details='%{DATA:details}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"summary='%{DATA:summary}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"vpn_type='%{DATA:vpn_type}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"connectivity='%{DATA:connectivity}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"load='%{BASE10NUM:load:DOUBLE}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"original_server_ip='%{IP:original_server_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"original_server_mac='%{COMMONMAC:original_server_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"server_ip='%{IP:server_ip}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"server_mac='%{COMMONMAC:server_mac}'\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\nend"
         }
       },
       "constraints": [
@@ -4406,7 +4126,7 @@
         "name": "lookup_table",
         "version": "1"
       },
-      "id": "f3c5baf7-66a5-418c-9acc-378eebb1d5e9",
+      "id": "053b744e-e120-4d0d-8bed-4180e504077e",
       "data": {
         "default_single_value_type": {
           "@type": "string",
@@ -4414,7 +4134,7 @@
         },
         "cache_name": {
           "@type": "string",
-          "@value": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df"
+          "@value": "1dd0925c-3993-43fd-b313-31dd164812c5"
         },
         "name": {
           "@type": "string",
@@ -4430,7 +4150,7 @@
         },
         "data_adapter_name": {
           "@type": "string",
-          "@value": "67205b01-d800-4cbe-a6e3-c2a4c77c9427"
+          "@value": "f1d732fd-ae0c-406d-a6b9-dacc9e304163"
         },
         "_scope": {
           "@type": "string",
@@ -4462,7 +4182,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "68eb279b-f0b3-48cc-9207-48056d31cb33",
+      "id": "cca31b68-7bb5-442d-b5da-b183a896a16f",
       "data": {
         "title": {
           "@type": "string",
@@ -4490,7 +4210,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "c4ad1385-e69d-496b-8e1f-7d6e36d15356",
+      "id": "b4eaab39-238a-47f2-b325-3fbd397e4489",
       "data": {
         "title": {
           "@type": "string",
@@ -4518,7 +4238,7 @@
         "name": "stream",
         "version": "1"
       },
-      "id": "67707516-21d0-4416-a5df-5e608ed94895",
+      "id": "2b1a6152-2c4b-4765-8a58-950e621f8a07",
       "data": {
         "alarm_callbacks": [],
         "outputs": [],
@@ -4562,7 +4282,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "5c4d52c3-8f4e-47a5-807c-d667ecfbe038",
+      "id": "e42f1ade-168e-4ced-b8ab-344b868235cc",
       "data": {
         "title": {
           "@type": "string",
@@ -4574,7 +4294,7 @@
         },
         "source": {
           "@type": "string",
-          "@value": "rule \"Meraki - Events - DHCP No Offers\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} (?i)dhcp\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)dhcp no offers for mac %{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"No DHCP Offers\",\n    prefix : \"meraki_\"\n  );\nend"
+          "@value": "rule \"Meraki - Events - DHCP No Offers\"\nwhen\n  grok(\n  value: to_string($message.\"message\"),\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category} (?i)dhcp\"\n).matches == true\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{WORD:category}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"(?i)dhcp no offers for mac %{COMMONMAC:mac_address}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"No DHCP Offers\",\n    prefix : \"meraki_\"\n  );\nend"
         }
       },
       "constraints": [
@@ -4590,7 +4310,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "12c5b4bb-c584-46c3-9b46-e0ba597c9fbc",
+      "id": "149954ba-a1df-4944-90cb-5d6443e2d719",
       "data": {
         "title": {
           "@type": "string",
@@ -4618,35 +4338,7 @@
         "name": "pipeline_rule",
         "version": "1"
       },
-      "id": "ab698421-1c91-4ceb-b205-b70316948323",
-      "data": {
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - syslog_ver"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Converts specified Field to correct type."
-        },
-        "source": {
-          "@type": "string",
-          "@value": "rule \"Meraki - syslog_ver\"\nwhen\n  has_field(\n    field : \"meraki_syslog_ver\"\n  )\nthen\n  route_to_stream(\n    name : \"Field Type Conversion\",\n    remove_from_default : true\n  );\n  let output_1 = get_field(\n    field : \"meraki_syslog_ver\"\n  );\n  let output_2 = to_long(\n    value : output_1\n  );\n  set_field(\n    field : \"meraki_syslog_ver\",\n    value : output_2\n  );\n  remove_from_stream(\n    name : \"Field Type Conversion\"\n  );\n  route_to_stream(\n    name : \"Cisco Meraki\",\n    remove_from_default : true\n  );\nend"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
-        "name": "pipeline_rule",
-        "version": "1"
-      },
-      "id": "7d48ae95-1a8f-45e9-985b-d49ba7a5dffd",
+      "id": "f9aae99f-5b5e-4685-bd8a-146dadccee18",
       "data": {
         "title": {
           "@type": "string",
@@ -4671,10 +4363,94 @@
     {
       "v": "1",
       "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "ca473d0c-c2f0-4891-8ad9-8ed622e30c6d",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Meraki - reason"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Converts disassociation codes to human readable (802.11 Dissociation Codes)"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"Meraki - reason\"\nwhen\n  has_field(\n    field : \"meraki_reason\"\n  )\n  AND\n  contains(\n  value: to_string($message.\"meraki_event_type\"),\n  search: \"disassociation\"\n)\nthen\n  route_to_stream(\n    name : \"Field Type Conversion\",\n    remove_from_default : true\n  );\n  let gl2_fragment_grok_results = grok(\n  pattern: \"%{BASE10NUM:reason}\",\n  value: to_string($message.\"meraki_reason\"),\n  only_named_captures: true\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\",\n  suffix: \"_num\"\n);\n  let gl2_fragment_extractor_1743831166804 = lookup_value(\"Meraki - reason\", to_string($message.\"meraki_reason_num\"));\nset_field(\"meraki_reason_description\", gl2_fragment_extractor_1743831166804);\n  let output_1 = gl2_fragment_extractor_1743831166804;\n  remove_single_field(\n    field : \"meraki_reason_num\"\n  );\n  remove_from_stream(\n    name : \"Field Type Conversion\"\n  );\n  route_to_stream(\n    name : \"Cisco Meraki\",\n    remove_from_default : true\n  );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=6.1.10+a308be3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "22691187-44f0-4ea8-b16c-96d7c7f5eb63",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Meraki - Security Event"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Parses Security Event logs."
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"Meraki - Security Event\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"security_event\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority:INT}>%{BASE10NUM:syslog_ver:INT} %{BASE10NUM:epoch} %{DATA:host} %{DATA:category} %{DATA:subcategory} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"Security Event\",\n    prefix : \"meraki_\"\n  );\n  let gl2_fragment_grok_results = grok(\n  pattern: \"signature=%{DATA:signature} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"priority=%{BASE10NUM:priority:INT} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"timestamp=%{BASE10NUM:event_timestamp:DOUBLE} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhost=%{COMMONMAC:mac_address} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"direction=%{WORD:direction} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{DATA:protocol} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IPV4:src_ip}:%{INT:src_port} |src=%{IPV6:src_ip}:%{INT:src_port} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IPV4:dst_ip}:%{INT:dst_port} |src=%{IPV6:dst_ip}:%{INT:dst_port} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"decision=%{WORD:decision} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"action=%{WORD:action}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"message: %{GREEDYDATA:message} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"name='%{DATA:file_name}' |name=%{DATA:file_name} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sha256=%{DATA:sha256} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"disposition=%{WORD:disposition}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"url=%{URI:url} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  rename_field(\n    old_field : \"meraki_HOSTNAME\",\n    new_field : \"meraki_url_hostname\"\n  );\n  rename_field(\n    old_field : \"meraki_IPORHOST\",\n    new_field : \"meraki_url_iporhost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIHOST\",\n    new_field : \"meraki_url_urihost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATH\",\n    new_field : \"meraki_url_uripath\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATHPARAM\",\n    new_field : \"meraki_url_uripathparam\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPROTO\",\n    new_field : \"meraki_url_uriproto\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=6.1.10+a308be3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline_rule",
+        "version": "1"
+      },
+      "id": "d61a8abe-d82c-46f4-af7d-346f1f8dfead",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Meraki - is_wpa"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Converts specified Field to correct type."
+        },
+        "source": {
+          "@type": "string",
+          "@value": "rule \"Meraki - is_wpa\"\nwhen\n  has_field(\n    field : \"meraki_is_wpa\"\n  )\nthen\n  route_to_stream(\n    name : \"Field Type Conversion\",\n    remove_from_default : true\n  );\n  let output_1 = get_field(\n    field : \"meraki_is_wpa\"\n  );\n  let output_2 = to_long(\n    value : output_1\n  );\n  set_field(\n    field : \"meraki_is_wpa\",\n    value : output_2\n  );\n  let gl2_fragment_extractor_1744212374563 = lookup_value(\"Meraki - is_wpa\", to_string($message.\"meraki_is_wpa\"));\nset_field(\"meraki_is_wpa_description\", gl2_fragment_extractor_1744212374563);\n  let output_3 = gl2_fragment_extractor_1744212374563;\n  set_field(\n    field : \"meraki_is_wpa_description\",\n    value : output_3\n  );\n  remove_from_stream(\n    name : \"Field Type Conversion\"\n  );\n  route_to_stream(\n    name : \"Cisco Meraki\",\n    remove_from_default : true\n  );\nend"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=6.1.10+a308be3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
         "name": "lookup_cache",
         "version": "1"
       },
-      "id": "9d1ab99e-9c3c-49cc-9fe5-2fa44dd4f3df",
+      "id": "1dd0925c-3993-43fd-b313-31dd164812c5",
       "data": {
         "_scope": {
           "@type": "string",
@@ -4717,90 +4493,6 @@
             "@type": "boolean",
             "@value": false
           }
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
-        "name": "pipeline_rule",
-        "version": "1"
-      },
-      "id": "cb195b33-4032-48e3-a5ab-3ed70c1c4cfb",
-      "data": {
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - reason"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Converts disassociation codes to human readable (802.11 Dissociation Codes)"
-        },
-        "source": {
-          "@type": "string",
-          "@value": "rule \"Meraki - reason\"\nwhen\n  has_field(\n    field : \"meraki_reason\"\n  )\n  AND\n  contains(\n  value: to_string($message.\"meraki_event_type\"),\n  search: \"disassociation\"\n)\nthen\n  route_to_stream(\n    name : \"Field Type Conversion\",\n    remove_from_default : true\n  );\n  let gl2_fragment_grok_results = grok(\n  pattern: \"%{BASE10NUM:reason}\",\n  value: to_string($message.\"meraki_reason\"),\n  only_named_captures: true\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\",\n  suffix: \"_num\"\n);\n  let gl2_fragment_extractor_1743831166804 = lookup_value(\"Meraki - reason\", to_string($message.\"meraki_reason_num\"));\nset_field(\"meraki_reason_description\", gl2_fragment_extractor_1743831166804);\n  let output_1 = gl2_fragment_extractor_1743831166804;\n  remove_single_field(\n    field : \"meraki_reason_num\"\n  );\n  remove_from_stream(\n    name : \"Field Type Conversion\"\n  );\n  route_to_stream(\n    name : \"Cisco Meraki\",\n    remove_from_default : true\n  );\nend"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
-        "name": "pipeline_rule",
-        "version": "1"
-      },
-      "id": "49964ea4-9295-4b7a-a89e-0af2b287e4b8",
-      "data": {
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - Security Event"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Parses Security Event logs."
-        },
-        "source": {
-          "@type": "string",
-          "@value": "rule \"Meraki - Security Event\"\nwhen\n  contains(\n  value: to_string($message.\"message\"),\n  search: \"security_event\",\n  ignore_case: true\n)\nthen\n  let gl2_fragment_grok_results = grok(\n  pattern: \"<%{BASE10NUM:syslog_priority}>%{BASE10NUM:syslog_ver} %{BASE10NUM:epoch} %{DATA:host} %{DATA:category} %{DATA:subcategory} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  set_field(\n    field : \"issue\",\n    value : \"Security Event\",\n    prefix : \"meraki_\"\n  );\n  let gl2_fragment_grok_results = grok(\n  pattern: \"signature=%{DATA:signature} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"priority=%{BASE10NUM:priority:INT} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"timestamp=%{BASE10NUM:event_timestamp:DOUBLE} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dhost=%{COMMONMAC:mac_address} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"direction=%{WORD:direction} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"protocol=%{DATA:protocol} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"src=%{IPV4:src_ip}:%{INT:src_port} |src=%{IPV6:src_ip}:%{INT:src_port} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"dst=%{IPV4:dst_ip}:%{INT:dst_port} |src=%{IPV6:dst_ip}:%{INT:dst_port} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"decision=%{WORD:decision} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"action=%{WORD:action}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"message: %{GREEDYDATA:message} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"mac=%{COMMONMAC:mac_address} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"name='%{DATA:file_name}' |name=%{DATA:file_name} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"sha256=%{DATA:sha256} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"disposition=%{WORD:disposition}\",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  let gl2_fragment_grok_results = grok(\n  pattern: \"url=%{URI:url} \",\n  value: to_string($message.\"message\")\n);\nset_fields(\n  fields: gl2_fragment_grok_results,\n  prefix: \"meraki_\"\n);\n  rename_field(\n    old_field : \"meraki_HOSTNAME\",\n    new_field : \"meraki_url_hostname\"\n  );\n  rename_field(\n    old_field : \"meraki_IPORHOST\",\n    new_field : \"meraki_url_iporhost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIHOST\",\n    new_field : \"meraki_url_urihost\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATH\",\n    new_field : \"meraki_url_uripath\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPATHPARAM\",\n    new_field : \"meraki_url_uripathparam\"\n  );\n  rename_field(\n    old_field : \"meraki_URIPROTO\",\n    new_field : \"meraki_url_uriproto\"\n  );\n  remove_single_field(\n    field : \"meraki_IP\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV4\"\n  );\n  remove_single_field(\n    field : \"meraki_IPV6\"\n  );\nend"
-        }
-      },
-      "constraints": [
-        {
-          "type": "server-version",
-          "version": ">=6.1.10+a308be3"
-        }
-      ]
-    },
-    {
-      "v": "1",
-      "type": {
-        "name": "pipeline_rule",
-        "version": "1"
-      },
-      "id": "43ccca86-a9ee-4b54-9857-ff6681ee6f30",
-      "data": {
-        "title": {
-          "@type": "string",
-          "@value": "Meraki - is_wpa"
-        },
-        "description": {
-          "@type": "string",
-          "@value": "Converts specified Field to correct type."
-        },
-        "source": {
-          "@type": "string",
-          "@value": "rule \"Meraki - is_wpa\"\nwhen\n  has_field(\n    field : \"meraki_is_wpa\"\n  )\nthen\n  route_to_stream(\n    name : \"Field Type Conversion\",\n    remove_from_default : true\n  );\n  let output_1 = get_field(\n    field : \"meraki_is_wpa\"\n  );\n  let output_2 = to_long(\n    value : output_1\n  );\n  set_field(\n    field : \"meraki_is_wpa\",\n    value : output_2\n  );\n  let gl2_fragment_extractor_1744212374563 = lookup_value(\"Meraki - is_wpa\", to_string($message.\"meraki_is_wpa\"));\nset_field(\"meraki_is_wpa_description\", gl2_fragment_extractor_1744212374563);\n  let output_3 = gl2_fragment_extractor_1744212374563;\n  set_field(\n    field : \"meraki_is_wpa_description\",\n    value : output_3\n  );\n  remove_from_stream(\n    name : \"Field Type Conversion\"\n  );\n  route_to_stream(\n    name : \"Cisco Meraki\",\n    remove_from_default : true\n  );\nend"
         }
       },
       "constraints": [

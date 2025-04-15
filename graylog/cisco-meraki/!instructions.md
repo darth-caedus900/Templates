@@ -21,9 +21,7 @@ Run these commands to make the various files you will need. The contents of the 
 
     sudo mkdir /etc/graylog/files
     sudo cd /etc/graylog/files
-    sudo touch syslog_severity_mapping.csv
     sudo touch is_wpa.csv
-    sudo touch facility.csv
     sudo touch fc_combined.csv
     sudo touch band.csv
     sudo touch reason.csv
@@ -34,9 +32,7 @@ Run these commands to make the various files you will need. The contents of the 
 
 After creating the files, paste the contents of the associated csv to the correct file.
 
-    sudo nano syslog_severity_mapping.csv
     sudo nano is_wpa.csv
-    sudo nano facility.csv
     sudo nano fc_combined.csv
     sudo nano band.csv 
     sudo nano reason.csv
