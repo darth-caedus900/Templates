@@ -5,7 +5,7 @@
 ## Includes
 
 - Input (Raw/Plaintext UDP)
-- Streams (Stream for Input, and File Conversion)
+- Streams (Stream for Input, and File Type Conversion)
 - Pipleline Rules and Stages
 - Lookup Tables, Data Adapters, and Data Cache
 - Dashboard
