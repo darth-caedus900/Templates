@@ -4,7 +4,7 @@
   "rev": 1,
   "name": "Cisco Meraki",
   "summary": "Meraki logs",
-  "description": "Takes in Cisco Meraki logs creating an input on port 1514, dashboards, pipeline, lookup sources, and stream.",
+  "description": "Please use updated content pack available here [Cisco-Meraki-Content-Pack-Manual-Field-Types](https://github.com/kbrown900/Templates/blob/main/graylog/cisco-meraki/Cisco-Meraki-Content-Pack.json). Removes need for manual field types. Takes in Cisco Meraki logs creating an input on port 1514, dashboards, pipeline, lookup sources, and stream.",
   "vendor": "kbrown900",
   "url": "https://github.com/kbrown900/Templates/blob/main/graylog/content-packs",
   "parameters": [],

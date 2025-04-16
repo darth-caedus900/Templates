@@ -10,7 +10,7 @@ This extractor is based on [Graylog-Meraki-Content-Pack](https://github.com/ddbn
 
 ### Cisco Meraki Content Pack
 
-Currently working on revision to remove manual work invloved.
+Please use updated content pack available here [Cisco-Meraki-Content-Pack-Manual-Field-Types](https://github.com/kbrown900/Templates/blob/main/graylog/cisco-meraki/Cisco-Meraki-Content-Pack.json). Removes need for manual field types.
 
 The content pack requires a custom index and Field Profile type which cannot be exported at the time of writing this (3/21/25).
 To get everything working correctly first follow these steps before import.
