@@ -2,6 +2,10 @@
 
 ---
 
+## Requirements
+
+Uses Whois and Spamhaus DROP. Please make sure those Content Packs are installed and enabled.
+
 ## Includes
 
 - Input (Raw/Plaintext UDP)
