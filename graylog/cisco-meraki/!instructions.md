@@ -8,7 +8,7 @@ Uses Whois and Spamhaus DROP. Please make sure those Content Packs are installed
 
 ## Includes
 
-- Input (Raw/Plaintext UDP)
+- Input (Raw/Plaintext UDP, port 1514)
 - Streams (Stream for Input, and File Type Conversion)
 - Pipleline Rules and Stages
 - Lookup Tables, Data Adapters, and Data Cache
@@ -19,7 +19,9 @@ Uses Whois and Spamhaus DROP. Please make sure those Content Packs are installed
 
 Install this content pack like you would any other. You will need to manually save the csv files. Here are some commands to create the files, but you will need to copy/paste the information in. I have provided the csv's used. I set the lookup tables to reference /etc/graylog/files but feel free to modify to meet needs.
 
-For Event Definitions, you will need to create your own notifications section, and modify the event definitions to send the appropriate notification but the difficult part has been done already. Since there are so many options I left it blank intentionally.
+For Event Definitions, you will need to create your own notifications section, and modify the event definitions to send the appropriate notification but the event definitions themselves will exist. Since there are so many options I left it blank intentionally.
+
+The "Meraki - UNIX Epoch Conversion with Timezone" will need to be edited to desired timezone. Change "America/Los_Angeles" as needed.
 
 Run these commands to make the various files you will need. The contents of the files are available in this repo.
 
