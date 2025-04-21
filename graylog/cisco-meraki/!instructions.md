@@ -21,7 +21,7 @@ Install this content pack like you would any other. You will need to manually sa
 
 For Event Definitions, you will need to create your own notifications section, and modify the event definitions to send the appropriate notification but the event definitions themselves will exist. Since there are so many options I left it blank intentionally.
 
-The "Meraki - UNIX Epoch Conversion with Timezone" will need to be edited to desired timezone. Change "America/Los_Angeles" as needed.
+The "Meraki - UNIX Epoch Conversion with Timezone" and "Meraki - UNIX Event Timestamp Conversion with Timezone" will need to be edited to desired timezone. Change "America/Los_Angeles" as needed.
 
 Run these commands to make the various files you will need. The contents of the files are available in this repo.
 
